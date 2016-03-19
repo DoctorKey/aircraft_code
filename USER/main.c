@@ -28,8 +28,10 @@ int main(void)
 
 while(1)
 {
-	delay(1000);
-//	USART_SendData(USART1,send_data);
+	delay(444000);
+	send_data=USART_ReceiveData(USART1);
+	USART_SendData(USART1,send_data);
+	while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
 }
 }
 
