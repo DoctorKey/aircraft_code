@@ -12,7 +12,7 @@
 
 #include "stm32f4xx.h"
 #include "LED.H"
-
+#include "usart1.h"
 
   
 void delay(unsigned int count);
@@ -25,12 +25,11 @@ int main(void)
 	u8 send_data='1';
 	LED_GPIO_Config();
 	USART1_Config();
-	printf("hello");
 
 while(1)
 {
 	delay(1000);
-	USART_SendData(USART1,send_data);
+//	USART_SendData(USART1,send_data);
 }
 }
 

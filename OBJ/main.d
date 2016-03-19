@@ -12,3 +12,4 @@
 ..\obj\main.o: ..\FWLIB\inc\stm32f4xx_rcc.h
 ..\obj\main.o: ..\FWLIB\inc\stm32f4xx_usart.h
 ..\obj\main.o: LED.H
+..\obj\main.o: usart1.h
