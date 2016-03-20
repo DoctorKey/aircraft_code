@@ -437,6 +437,11 @@
               <FileType>1</FileType>
               <FilePath>.\usart1.c</FilePath>
             </File>
+            <File>
+              <FileName>Ano_Tech_Host.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Ano_Tech_Host.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

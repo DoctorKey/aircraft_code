@@ -32,11 +32,13 @@ LED.H(14): warning:  #1-D: last line of file ends without a newline
   #endif /* __LED_H */
 usart1.h(6): warning:  #1-D: last line of file ends without a newline
   #endif /* __usart_H */
-main.c: 2 warnings, 0 errors
+main.c(12): warning:  #177-D: variable "send_data" was declared but never referenced
+        u8 send_data='1';
+main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=4568 RO-data=424 RW-data=36 ZI-data=1636  
+Program Size: Code=4520 RO-data=424 RW-data=36 ZI-data=1636  
 FromELF: creating hex file...
-"..\OBJ\Template.axf" - 0 Error(s), 2 Warning(s).
+"..\OBJ\Template.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   F:\electricity\光电设计大赛\aircraft_code\USER\RTE
