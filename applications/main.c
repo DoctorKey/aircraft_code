@@ -25,7 +25,6 @@ u8 Init_Finish = 0;
 int main(void)
 {
 	Init_Finish = All_Init();	
-	USART_SendData( USART2, 11);
 	while(1)
 	{
 		Duty_Loop(); 
