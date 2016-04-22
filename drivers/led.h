@@ -3,6 +3,9 @@
 
 #include "stm32f4xx.h"
 
+#define  LED0_ON	  	GPIO_SetBits(GPIOB,GPIO_Pin_9)
+#define	 LED0_OFF	    GPIO_ResetBits(GPIOB,GPIO_Pin_9)
+
 #define LED1_OFF         ANO_GPIO_LED->BSRRL = ANO_Pin_LED1   //H
 #define LED1_ON          ANO_GPIO_LED->BSRRH = ANO_Pin_LED1		//L
 #define LED2_OFF         ANO_GPIO_LED->BSRRL = ANO_Pin_LED2

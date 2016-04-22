@@ -22,6 +22,14 @@ void LED_Init()
 	GPIO_InitStructure.GPIO_Pin   = ANO_Pin_LED1| ANO_Pin_LED2| ANO_Pin_LED3| ANO_Pin_LED4;
 	GPIO_Init(ANO_GPIO_LED, &GPIO_InitStructure);
 	
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB|RCC_AHB1Periph_GPIOG,ENABLE);	//使能GPIOC的外设时钟
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;	//选择要用的GPIO引脚		 
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//设置引脚为普通输出模式		
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//设置引脚为推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//设置引脚速度为100MHz
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//设置引脚为上拉 		 
+	GPIO_Init(GPIOB, &GPIO_InitStructure);//调用库函数，初始化GPIO
+	
 	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED1);		
 	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED2);		
 	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED3);		
@@ -97,11 +105,18 @@ extern u8 height_ctrl_mode;
 
 u8 LED_Brightness[4] = {0,20,0,0}; //TO 20
 u8 LED_status[2];  //  0:old;  1:now
+u8 flag=1;
 void LED_Duty()
 {
 	static s16 led_temp;
 	static u8 f;
-	
+	if(flag==0){
+		LED0_ON;
+		flag=1;
+	}else{
+		LED0_OFF;
+		flag=0;
+	}
 	if(Mag_CALIBRATED)
 	{
 		LED_status[1] = 1;

@@ -107,6 +107,7 @@ void Duty_20ms()
 
 void Duty_50ms()
 {
+	//先检测下超声波
 	Mode();
 	LED_Duty();								//LED任务
 	Ultra_Duty();

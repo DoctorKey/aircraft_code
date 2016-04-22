@@ -39,6 +39,7 @@ u8 All_Init()
 	
 	Usart2_Init(115200);			//串口2初始化，函数参数为波特率
 	//Usart2_Init(256000);
+	USART_SendData( USART2, 0x11);
 
 	Usb_Hid_Init();						//飞控usb接口的hid初始化
 	
@@ -57,7 +58,9 @@ u8 All_Init()
 	if( !mpu6050_ok )
 	{
 		LED_MPU_Err();
+		USART_SendData( USART2, 0x22);
 	}
+	USART_SendData( USART2, 0x44);
 //	else if( !ak8975_ok )
 //	{
 //		LED_Mag_Err();

@@ -74,7 +74,7 @@ void Usart2_Init(u32 br_num)
 //		USART_ITConfig(USART2, USART_IT_TXE, ENABLE); 
 //	}
 
-
+	USART_SendData( USART2, 0x23);
 }
 
 u8 TxBuffer[256];
@@ -135,7 +135,7 @@ void Usart2_Send(unsigned char *DataToSend ,u8 data_num)
 
 
 
-void Uart5_Init(u32 br_num)
+  void Uart5_Init(u32 br_num)
 {
 	USART_InitTypeDef USART_InitStructure;
 	//USART_ClockInitTypeDef USART_ClockInitStruct;

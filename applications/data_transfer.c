@@ -87,7 +87,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,(0.1f *baro_height),0,fly_ready);	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,(0.1f *baro_height),0,fly_ready);	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -343,6 +343,17 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 		RX_CH[AUX4] = (vs16)(*(data_buf+18)<<8)|*(data_buf+19) ;
 	}
 
+	if(*(data_buf+2)==0X04)//·É¿Ø½âËø
+	{
+		if(*(data_buf+4)==0X01)
+		{
+			fly_ready=0;
+		}else if(*(data_buf+4)==0X02)
+		{
+			fly_ready=1;
+		}
+	}
+	
 	if(*(data_buf+2)==0X10)								//PID1
     {
         ctrl_1.PID[PIDROLL].kp  = 0.001*( (vs16)(*(data_buf+4)<<8)|*(data_buf+5) );
@@ -522,7 +533,7 @@ void ANO_DT_Send_Location(u8 state,u8 sat_num,s32 lon,s32 lat,float back_home_an
 }
 
 
-void ANO_DT_Send_Status(float angle_rol, float angle_pit, float angle_yaw, s32 alt, u8 fly_model, u8 armed)
+void ANO_DT_Send_Status(float angle_rol, float angle_pit, float angle_yaw,s16 us_height, s32 alt, u8 fly_model, u8 armed)
 {
 	u8 _cnt=0;
 	vs16 _temp;
@@ -543,6 +554,9 @@ void ANO_DT_Send_Status(float angle_rol, float angle_pit, float angle_yaw, s32 a
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 	
+	_temp = us_height;
+	data_to_send[_cnt++]=BYTE1(_temp);
+	data_to_send[_cnt++]=BYTE0(_temp);
 	data_to_send[_cnt++]=BYTE3(_temp2);
 	data_to_send[_cnt++]=BYTE2(_temp2);
 	data_to_send[_cnt++]=BYTE1(_temp2);
