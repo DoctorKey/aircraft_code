@@ -29,7 +29,7 @@ u8 All_Init()
 	
 	PWM_Out_Init(400);				//初始化电调输出功能
 	
-	MS5611_Init();						//气压计初始化
+//	MS5611_Init();						//气压计初始化
 	
 	Delay_ms(200);						//延时
 	
@@ -39,7 +39,6 @@ u8 All_Init()
 	
 	Usart2_Init(115200);			//串口2初始化，函数参数为波特率
 	//Usart2_Init(256000);
-	USART_SendData( USART2, 0x11);
 
 	Usb_Hid_Init();						//飞控usb接口的hid初始化
 	
@@ -58,13 +57,11 @@ u8 All_Init()
 	if( !mpu6050_ok )
 	{
 		LED_MPU_Err();
-		USART_SendData( USART2, 0x22);
 	}
-	USART_SendData( USART2, 0x44);
-//	else if( !ak8975_ok )
-//	{
-//		LED_Mag_Err();
-//	}
+	else if( !ak8975_ok )
+	{
+		LED_Mag_Err();
+	}
 //	else if( !ms5611_ok )
 //	{
 //		LED_MS5611_Err();

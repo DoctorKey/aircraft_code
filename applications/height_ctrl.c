@@ -164,7 +164,7 @@ void height_speed_ctrl(float T,float thr,float exp_z_speed,float h_speed)
 }
 
 u8 baro_ctrl_start;
-float baro_height,baro_height_old;
+float baro_height=0,baro_height_old;
 float baro_measure;
 
 void Baro_Ctrl(float T,float thr)

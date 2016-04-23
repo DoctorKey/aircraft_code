@@ -74,7 +74,6 @@ void Usart2_Init(u32 br_num)
 //		USART_ITConfig(USART2, USART_IT_TXE, ENABLE); 
 //	}
 
-	USART_SendData( USART2, 0x23);
 }
 
 u8 TxBuffer[256];

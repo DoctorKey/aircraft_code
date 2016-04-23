@@ -11,16 +11,16 @@
 #include "math.h"
 #include "filter.h"
 
-#define BARO_CAL_CNT 200
+//#define BARO_CAL_CNT 200
 
-	int32_t baroAlt,baroAltOld;
-	float baro_alt_speed;
-	int32_t baro_Offset;
-	uint32_t ms5611_ut;  // static result of temperature measurement
-	uint32_t ms5611_up;  // static result of pressure measurement
-	uint16_t ms5611_prom[PROM_NB];  // on-chip ROM
-	uint8_t t_rxbuf[3],p_rxbuf[3];
-
+	int32_t baroAlt=0,baroAltOld;
+	float baro_alt_speed=0;
+//	int32_t baro_Offset;
+//	uint32_t ms5611_ut;  // static result of temperature measurement
+//	uint32_t ms5611_up;  // static result of pressure measurement
+//	uint16_t ms5611_prom[PROM_NB];  // on-chip ROM
+//	uint8_t t_rxbuf[3],p_rxbuf[3];
+/*
 void MS5611_Reset(void)
 {
     IIC_Write_1Byte(MS5611_ADDR, CMD_RESET, 1);
@@ -28,19 +28,19 @@ void MS5611_Reset(void)
 
 u8 MS5611_Read_Prom(void)
 {
-	uint8_t rxbuf[2] = { 0, 0 };
-	u8 check = 0;
-	u8 i;
+//	uint8_t rxbuf[2] = { 0, 0 };
+//	u8 check = 0;
+//	u8 i;
 
-	for (i = 0; i < PROM_NB; i++)
-	{
-		check += IIC_Read_nByte(MS5611_ADDR, CMD_PROM_RD + i * 2, 2, rxbuf); // send PROM READ command
-		ms5611_prom[i] = rxbuf[0] << 8 | rxbuf[1];
-	}
+//	for (i = 0; i < PROM_NB; i++)
+//	{
+//		check += IIC_Read_nByte(MS5611_ADDR, CMD_PROM_RD + i * 2, 2, rxbuf); // send PROM READ command
+//		ms5611_prom[i] = rxbuf[0] << 8 | rxbuf[1];
+//	}
 
-	if(check==PROM_NB)
-		return 1;
-	else
+//	if(check==PROM_NB)
+//		return 1;
+//	else
 		return 0;
 }
 
@@ -188,6 +188,6 @@ int32_t MS5611_Get_BaroAlt(void)
 {
 	return baroAlt;
 }
-
+*/
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/
 

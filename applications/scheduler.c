@@ -92,10 +92,10 @@ void Duty_5ms()
 
 void Duty_10ms()
 {
- 		if( MS5611_Update() ) 				//更新ms5611气压计数据
-		{	
-			baro_ctrl_start = 1;  //20ms
-		}
+// 		if( MS5611_Update() ) 				//更新ms5611气压计数据
+//		{	
+//			baro_ctrl_start = 1;  //20ms
+//		}
 		
 	  ANO_AK8975_Read();			//获取电子罗盘数据	
 }
