@@ -19,8 +19,6 @@ enum {
 		PIDITEMS
 };
 
-
-
 typedef struct
 {
 	xyz_f_t err;

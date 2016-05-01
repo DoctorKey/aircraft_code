@@ -328,7 +328,7 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 
 	if(*(data_buf+2)==0X03)
 	{
-		if( NS != 1 )
+		if( NS != 2 )
 		{
 			Feed_Rc_Dog(2);
 		}
@@ -353,6 +353,7 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			fly_ready=1;
 		}
 	}
+	
 	
 	if(*(data_buf+2)==0X10)								//PID1
     {

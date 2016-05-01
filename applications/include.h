@@ -12,7 +12,7 @@
 #include "data_transfer.h"
 
 //================系统===================
-#define CTRL_HEIGHT 1       //0失能，1使能
+#define CTRL_HEIGHT 0       //0失能，1使能
 
 #define USE_US100           //使用us100型号超声波 
 // #define USE_KS103					//使用ks103型号超声波
