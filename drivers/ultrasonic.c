@@ -6,7 +6,6 @@
 void Ultrasonic_Init()
 {
   Uart5_Init(9600);			//串口5初始化，函数参数为波特率
-	
 }
 
 s8 ultra_start_f;

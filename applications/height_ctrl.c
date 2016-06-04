@@ -9,14 +9,14 @@
 _st_height_pid_v wz_speed_pid_v;
 _st_height_pid wz_speed_pid;
 
-float baro_speed;
+//float baro_speed;
 
 float height_ctrl_out;
 float wz_acc;
 
-#define BARO_SPEED_NUM 100
-float baro_speed_arr[BARO_SPEED_NUM + 1];
-u16 baro_cnt[2];
+//#define BARO_SPEED_NUM 100
+//float baro_speed_arr[BARO_SPEED_NUM + 1];
+//u16 baro_cnt[2];
 
 #define EXP_Z_SPEED  ( 4.0f *my_deathzoom( (thr-500), 50 ) )
 void Height_Ctrl(float T,float thr)
@@ -24,7 +24,7 @@ void Height_Ctrl(float T,float thr)
 	static float wz_speed_t;
 	static u8 height_ctrl_start_f;
 	static u16 hc_start_delay;
-		static u8 hs_ctrl_cnt;
+	static u8 hs_ctrl_cnt;
 	
 	switch( height_ctrl_start_f )
 	{
@@ -47,29 +47,27 @@ void Height_Ctrl(float T,float thr)
 		
 		wz_speed_t += ( 1 / ( 1 + 1 / ( 0.5f *3.14f *T ) ) ) *(0.4f*(thr-500) - wz_speed_t);
 		
-		Moving_Average( (float)( baro_alt_speed *10),baro_speed_arr,BARO_SPEED_NUM, baro_cnt ,&baro_speed ); //单位mm/s
+//		Moving_Average( (float)( baro_alt_speed *10),baro_speed_arr,BARO_SPEED_NUM, baro_cnt ,&baro_speed ); //单位mm/s
 // 		if( baro_alt_speed > 2000 )
 // 		{
 // 			while(1);
 // 		}
 		
-		if( height_ctrl_mode == 1)
-		{
-			//height_speed_ctrl(T,thr,0.8f*(thr-500),wz_speed_t);
-			
-			
-			if(baro_ctrl_start==1)//20ms
-			{
-				height_speed_ctrl(0.02f,thr,( EXP_Z_SPEED ),baro_speed);//baro_alt_speed *10);///
-				baro_ctrl_start = 0;
-				Baro_Ctrl(0.02f,thr);
-			}		
-		}
+//		if( height_ctrl_mode == 1)//使用气压计定高
+//		{
+//			//height_speed_ctrl(T,thr,0.8f*(thr-500),wz_speed_t);
+//			
+//			
+//			if(baro_ctrl_start==1)//20ms
+//			{
+//				height_speed_ctrl(0.02f,thr,( EXP_Z_SPEED ),baro_speed);//baro_alt_speed *10);///
+//				baro_ctrl_start = 0;
+//				Baro_Ctrl(0.02f,thr);
+//			}		
+//		}
 		
-
-
 		
-		else if( height_ctrl_mode == 2)
+		if( height_ctrl_mode == 2)
 		{
 			hs_ctrl_cnt++;
 			hs_ctrl_cnt = hs_ctrl_cnt%10;
@@ -163,35 +161,28 @@ void height_speed_ctrl(float T,float thr,float exp_z_speed,float h_speed)
 	wz_speed_pid_v.err_old = wz_speed_pid_v.err; 
 }
 
-u8 baro_ctrl_start;
-float baro_height=0,baro_height_old;
-float baro_measure;
+//u8 baro_ctrl_start;
+//float baro_height=0,baro_height_old;
+//float baro_measure;
 
-void Baro_Ctrl(float T,float thr)
-{
-	static float start_height;
+//void Baro_Ctrl(float T,float thr)
+//{
+//	static float start_height;
 
-	/*        
-        Q:过程噪声，Q增大，动态响应变快，收敛稳定性变坏
-        R:测量噪声，R增大，动态响应变慢，收敛稳定性变好        
-  */
-    
-
-  
-	
-	if( (s16)start_height == 0 )
-	{
-		start_height = baroAlt;
-	}		
-	baro_measure = 10 *( baroAlt - start_height );
-	
-	baro_height += T *wz_speed;
-	
-	baro_height += 0.2f *3.14f *T *(baro_measure - baro_height);
-				
-
-        
-}
+//	/*        
+//        Q:过程噪声，Q增大，动态响应变快，收敛稳定性变坏
+//        R:测量噪声，R增大，动态响应变慢，收敛稳定性变好        
+//  */	
+//	if( (s16)start_height == 0 )
+//	{
+//		start_height = baroAlt;
+//	}		
+//	baro_measure = 10 *( baroAlt - start_height );
+//	
+//	baro_height += T *wz_speed;
+//	
+//	baro_height += 0.2f *3.14f *T *(baro_measure - baro_height);       
+//}
 
 #define ULTRA_SPEED 		 300    // mm/s
 #define ULTRA_MAX_HEIGHT 1500   // mm

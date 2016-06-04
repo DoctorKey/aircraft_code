@@ -18,6 +18,7 @@
 #include "time.h"
 #include "usbd_user_hid.h"
 #include "ultrasonic.h"
+#include "myctrl.h"
 
 /////////////////////////////////////////////////////////////////////////////////////
 //数据拆分宏定义，在发送大于1字节的数据类型时，比如int16、float等，需要把数据拆分成单独字节进行发送
@@ -86,7 +87,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,(0.1f *baro_height),0,fly_ready);	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,0,fly_ready);	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -193,35 +194,35 @@ void ANO_DT_Send_Data(u8 *dataToSend , u8 length)
 
 static void ANO_DT_Send_Check(u8 head, u8 check_sum)
 {
-//		data_to_send[0]=0xAA;
-//	data_to_send[1]=0xAA;
-//	data_to_send[2]=0xF0;
-//	data_to_send[3]=3;
-//	data_to_send[4]=0xBA;
-//	
-//	data_to_send[5]=BYTE1(check_sum);
-//	data_to_send[6]=BYTE0(check_sum);
-//	
-//	u8 sum = 0;
-//	for(u8 i=0;i<7;i++)
-//		sum += data_to_send[i];
-//	
-//	data_to_send[7]=sum;
-//	ANO_DT_Send_Data(data_to_send, 8);
-	data_to_send[0]=0xAA;
+		data_to_send[0]=0xAA;
 	data_to_send[1]=0xAA;
-	data_to_send[2]=0xEF;
-	data_to_send[3]=2;
-	data_to_send[4]=head;
-	data_to_send[5]=check_sum;
+	data_to_send[2]=0xF0;
+	data_to_send[3]=3;
+	data_to_send[4]=0xBA;
 	
+	data_to_send[5]=BYTE1(check_sum);
+	data_to_send[6]=BYTE0(check_sum);
 	
 	u8 sum = 0;
-	for(u8 i=0;i<6;i++)
+	for(u8 i=0;i<7;i++)
 		sum += data_to_send[i];
-	data_to_send[6]=sum;
+	
+	data_to_send[7]=sum;
+	ANO_DT_Send_Data(data_to_send, 8);
+//	data_to_send[0]=0xAA;
+//	data_to_send[1]=0xAA;
+//	data_to_send[2]=0xEF;
+//	data_to_send[3]=2;
+//	data_to_send[4]=head;
+//	data_to_send[5]=check_sum;
+//	
+//	
+//	u8 sum = 0;
+//	for(u8 i=0;i<6;i++)
+//		sum += data_to_send[i];
+//	data_to_send[6]=sum;
 
-	ANO_DT_Send_Data(data_to_send, 7);
+//	ANO_DT_Send_Data(data_to_send, 7);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -278,7 +279,6 @@ void ANO_DT_Data_Receive_Prepare(u8 data)
 //此函数可以不用用户自行调用，由函数Data_Receive_Prepare自动调用
 u16 flash_save_en_cnt = 0;
 u16 RX_CH[CH_NUM];
-
 void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 {
 	u8 sum = 0;
@@ -368,7 +368,16 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			fly_ready=1;
 		}
 	}
-	
+	if(*(data_buf+2)==0X05)//起飞降落
+	{
+		if(*(data_buf+4)==0X01)
+		{
+			take_off();
+		}else if(*(data_buf+4)==0X02)
+		{
+			drop();
+		}
+	}
 	
 	if(*(data_buf+2)==0X10)								//PID1
     {
@@ -824,9 +833,9 @@ void ANO_DT_Send_PID(u8 group,float p1_p,float p1_i,float p1_d,float p2_p,float 
 
 extern u16 ultra_distance;
 extern float ultra_speed;
-extern float wz_speed_0,wz_speed,baro_speed,m_norm;
+extern float wz_speed_0,wz_speed,m_norm;//baro_speed,
 extern float ultra_ctrl_out;
-extern float baro_height,baro_measure;
+//extern float baro_height,baro_measure;
 extern float yaw_mag,airframe_x_sp,airframe_y_sp,wx_sp,wy_sp;
 extern float werr_x_gps,werr_y_gps,aerr_x_gps,aerr_y_gps;
 
@@ -841,7 +850,7 @@ void ANO_DT_Send_User()
 	data_to_send[_cnt++]=0;
 	
 	
-	_temp = (s16)baro_measure;            //1
+	_temp = (s16)0;//baro_measure;            //1
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 
@@ -853,11 +862,11 @@ void ANO_DT_Send_User()
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);	
 	
-	_temp = (s16)baro_speed;
+	_temp = (s16)0;//baro_speed;
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 	
-  _temp = (s16)baro_height;              //5
+  _temp = (s16)0;//baro_height;              //5
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 	

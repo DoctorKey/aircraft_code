@@ -144,7 +144,6 @@ void Fly_Ready(float T)
 		if( fly_ready && ready_cnt != -1 ) //解锁完成，且已退出解锁上锁过程
 		{
 			//ready_cnt += 1000 *T;
-			//CH_filter[2] = -450;
 		}
 #if(USE_TOE_IN_UNLOCK)		
 		if( CH_filter[3] < -400 )							

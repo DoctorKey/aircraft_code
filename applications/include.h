@@ -12,7 +12,7 @@
 #include "data_transfer.h"
 
 //================系统===================
-#define CTRL_HEIGHT 0       //0失能，1使能
+#define CTRL_HEIGHT 1       //0失能，1使能
 
 #define USE_US100           //使用us100型号超声波 
 // #define USE_KS103					//使用ks103型号超声波
@@ -24,6 +24,7 @@
 #define USE_TOE_IN_UNLOCK 0 // 0：默认解锁方式，1：外八解锁方式
 #define ANO_DT_USE_USART2 	//开启串口2数传功能
 //#define ANO_DT_USE_USB_HID	//开启飞控USBHID连接上位机功能
+#define FLY_THR 1400 //起飞油门
 //=======================================
 /***************中断优先级******************/
 #define NVIC_GROUP NVIC_PriorityGroup_3		//中断分组选择

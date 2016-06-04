@@ -46,6 +46,5 @@ void All_Out(float x,float y,float z);
 extern u8 Thr_Low;
 extern float Thr_Weight;
 extern float motor[MAXMOTORS];
-
 #endif
 

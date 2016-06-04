@@ -14,6 +14,7 @@
 ".\build\version.o"
 ".\build\filter.o"
 ".\build\height_ctrl.o"
+".\build\myctrl.o"
 ".\build\time.o"
 ".\build\pwm_in.o"
 ".\build\pwm_out.o"

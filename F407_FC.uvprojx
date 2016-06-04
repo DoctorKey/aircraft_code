@@ -609,6 +609,16 @@
               <FileType>5</FileType>
               <FilePath>.\applications\height_ctrl.h</FilePath>
             </File>
+            <File>
+              <FileName>myctrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\applications\myctrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>myctrl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\applications\myctrl.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

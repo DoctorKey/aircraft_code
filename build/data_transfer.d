@@ -45,3 +45,4 @@
 .\build\data_transfer.o: applications\ctrl.h
 .\build\data_transfer.o: .\drivers\pwm_out.h
 .\build\data_transfer.o: .\drivers\ultrasonic.h
+.\build\data_transfer.o: applications\myctrl.h
