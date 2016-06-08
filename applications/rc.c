@@ -214,39 +214,39 @@ void Feed_Rc_Dog(u8 ch_mode) //400ms内必须调用一次
 //=================== filter ===================================
 //  全局输出，CH_filter[],0横滚，1俯仰，2油门，3航向 范围：+-500	
 //=================== filter =================================== 	
-u8 height_ctrl_mode = 0;
+u8 height_ctrl_mode = 2;
 extern u8 ultra_ok;
 void Mode()
 {
-	if( !fly_ready || CH_filter[THR]<-400 ) //只在上锁时 以及 油门 低于10% 的时候，允许切换模式，否则只能向模式0切换。
-	{
-		if( CH_filter[AUX1] < -200 )
-		{
-			height_ctrl_mode = 0;
-		}
-		else if( CH_filter[AUX1] < 200 )
-		{
-			height_ctrl_mode = 1;
-		}
-		else
-		{
-			if(ultra_ok == 1)
-			{
-				height_ctrl_mode = 2;
-			}
-			else
-			{
-				height_ctrl_mode = 1;
-			}
-		}
-	}
-	else
-	{
-		if( CH_filter[AUX1] < -200 )
-		{
-			height_ctrl_mode = 0;
-		}
-	}
+//	if( !fly_ready || CH_filter[THR]<-400 ) //只在上锁时 以及 油门 低于10% 的时候，允许切换模式，否则只能向模式0切换。
+//	{
+//		if( CH_filter[AUX1] < -200 )
+//		{
+//			height_ctrl_mode = 0;
+//		}
+//		else if( CH_filter[AUX1] < 200 )
+//		{
+//			height_ctrl_mode = 1;
+//		}
+//		else
+//		{
+//			if(ultra_ok == 1)
+//			{
+//				height_ctrl_mode = 2;
+//			}
+//			else
+//			{
+//				height_ctrl_mode = 1;
+//			}
+//		}
+//	}
+//	else
+//	{
+//		if( CH_filter[AUX1] < -200 )
+//		{
+//			height_ctrl_mode = 0;
+//		}
+//	}
 }
 
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/

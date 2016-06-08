@@ -91,12 +91,7 @@ void Duty_5ms()
 }
 
 void Duty_10ms()
-{
-// 		if( MS5611_Update() ) 				//更新ms5611气压计数据
-//		{	
-//			baro_ctrl_start = 1;  //20ms
-//		}
-		
+{		
 	  ANO_AK8975_Read();			//获取电子罗盘数据	
 }
 
@@ -108,7 +103,7 @@ void Duty_20ms()
 void Duty_50ms()
 {
 	//先检测下超声波
-	Mode();
+	//Mode();
 	LED_Duty();								//LED任务
 	Ultra_Duty();
 }

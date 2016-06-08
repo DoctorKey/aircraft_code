@@ -87,7 +87,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,0,fly_ready);	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,height_ctrl_mode,fly_ready);	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -113,7 +113,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_senser2)
 	{
 		f.send_senser2 = 0;
-		ANO_DT_Send_Senser2(baroAlt,ultra_distance/10);
+		ANO_DT_Send_Senser2(baroAlt,ultra_distance);
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_rcdata)
@@ -833,9 +833,8 @@ void ANO_DT_Send_PID(u8 group,float p1_p,float p1_i,float p1_d,float p2_p,float 
 
 extern u16 ultra_distance;
 extern float ultra_speed;
-extern float wz_speed_0,wz_speed,m_norm;//baro_speed,
+extern float wz_speed_0,wz_speed,m_norm;
 extern float ultra_ctrl_out;
-//extern float baro_height,baro_measure;
 extern float yaw_mag,airframe_x_sp,airframe_y_sp,wx_sp,wy_sp;
 extern float werr_x_gps,werr_y_gps,aerr_x_gps,aerr_y_gps;
 
