@@ -59,6 +59,8 @@ void Ultra_Get(u8 com_data)
 	else if( ultra_start_f == 2 )
 	{
 		ultra_distance = (ultra_tmp<<8) + com_data;
+		if(ultra_distance>ULTRA_MAX_HEIGHT)
+			ultra_distance=ultra_distance_old;
 		ultra_start_f = 0;
 		ultra_ok = 1;
 	}

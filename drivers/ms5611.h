@@ -40,6 +40,6 @@
 	void MS5611_BaroAltCalculate(void);
 
 extern u8 ms5611_ok;
-	extern int32_t baroAlt,baroAltOld;
-	extern float baro_alt_speed;
+//	extern int32_t baroAlt,baroAltOld;
+//	extern float baro_alt_speed;
 #endif

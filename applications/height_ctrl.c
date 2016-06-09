@@ -136,7 +136,7 @@ void height_speed_ctrl(float T,float thr,float exp_z_speed,float h_speed)
 }
 
 #define ULTRA_SPEED 		 300    // mm/s
-#define ULTRA_MAX_HEIGHT 1500   // mm
+#define ULTRA_MAX_HEIGHT 1000   // mm
 #define ULTRA_INT        300    // »ý·Ö·ù¶È
 
 _st_height_pid_v ultra_ctrl;

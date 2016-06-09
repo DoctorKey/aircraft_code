@@ -13,8 +13,8 @@
 
 //#define BARO_CAL_CNT 200
 
-	int32_t baroAlt=0,baroAltOld;
-	float baro_alt_speed=0;
+//	int32_t baroAlt=0,baroAltOld;
+//	float baro_alt_speed=0;
 //	int32_t baro_Offset;
 //	uint32_t ms5611_ut;  // static result of temperature measurement
 //	uint32_t ms5611_up;  // static result of pressure measurement

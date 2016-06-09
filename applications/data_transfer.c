@@ -87,7 +87,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,height_ctrl_mode,fly_ready);	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,height_ctrl_mode,fly_ready);//ultra_distance	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -113,7 +113,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_senser2)
 	{
 		f.send_senser2 = 0;
-		ANO_DT_Send_Senser2(baroAlt,ultra_distance);
+		ANO_DT_Send_Senser2(0,ultra_distance);//baroAlt,ultra_distance
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_rcdata)
