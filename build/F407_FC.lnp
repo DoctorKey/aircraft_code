@@ -22,7 +22,6 @@
 ".\build\mpu6050.o"
 ".\build\ak8975.o"
 ".\build\led.o"
-".\build\ms5611.o"
 ".\build\usart.o"
 ".\build\usbd_stm32f4xx_fs.o"
 ".\build\drv_w25qxx.o"

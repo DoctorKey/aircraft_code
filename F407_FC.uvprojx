@@ -695,16 +695,6 @@
               <FilePath>.\drivers\led.h</FilePath>
             </File>
             <File>
-              <FileName>ms5611.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers\ms5611.c</FilePath>
-            </File>
-            <File>
-              <FileName>ms5611.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\drivers\ms5611.h</FilePath>
-            </File>
-            <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\drivers\usart.c</FilePath>

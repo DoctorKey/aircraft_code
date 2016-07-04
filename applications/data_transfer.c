@@ -12,7 +12,6 @@
 #include "imu.h"
 #include "mpu6050.h"
 #include "ak8975.h"
-#include "ms5611.h"
 #include "rc.h"
 #include "ctrl.h"
 #include "time.h"
@@ -194,35 +193,35 @@ void ANO_DT_Send_Data(u8 *dataToSend , u8 length)
 
 static void ANO_DT_Send_Check(u8 head, u8 check_sum)
 {
-		data_to_send[0]=0xAA;
-	data_to_send[1]=0xAA;
-	data_to_send[2]=0xF0;
-	data_to_send[3]=3;
-	data_to_send[4]=0xBA;
-	
-	data_to_send[5]=BYTE1(check_sum);
-	data_to_send[6]=BYTE0(check_sum);
-	
-	u8 sum = 0;
-	for(u8 i=0;i<7;i++)
-		sum += data_to_send[i];
-	
-	data_to_send[7]=sum;
-	ANO_DT_Send_Data(data_to_send, 8);
-//	data_to_send[0]=0xAA;
+//		data_to_send[0]=0xAA;
 //	data_to_send[1]=0xAA;
-//	data_to_send[2]=0xEF;
-//	data_to_send[3]=2;
-//	data_to_send[4]=head;
-//	data_to_send[5]=check_sum;
+//	data_to_send[2]=0xF0;
+//	data_to_send[3]=3;
+//	data_to_send[4]=0xBA;
 //	
+//	data_to_send[5]=BYTE1(check_sum);
+//	data_to_send[6]=BYTE0(check_sum);
 //	
 //	u8 sum = 0;
-//	for(u8 i=0;i<6;i++)
+//	for(u8 i=0;i<7;i++)
 //		sum += data_to_send[i];
-//	data_to_send[6]=sum;
+//	
+//	data_to_send[7]=sum;
+//	ANO_DT_Send_Data(data_to_send, 8);
+	data_to_send[0]=0xAA;
+	data_to_send[1]=0xAA;
+	data_to_send[2]=0xEF;
+	data_to_send[3]=2;
+	data_to_send[4]=head;
+	data_to_send[5]=check_sum;
+	
+	
+	u8 sum = 0;
+	for(u8 i=0;i<6;i++)
+		sum += data_to_send[i];
+	data_to_send[6]=sum;
 
-//	ANO_DT_Send_Data(data_to_send, 7);
+	ANO_DT_Send_Data(data_to_send, 7);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -429,20 +428,20 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
     }
 	if(*(data_buf+2)==0X13)								//PID4
 	{
-		    pid_setup.groups.ctrl4.kp  = 0.001*( (vs16)(*(data_buf+4)<<8)|*(data_buf+5) );
-        pid_setup.groups.ctrl4.ki  = 0.001*( (vs16)(*(data_buf+6)<<8)|*(data_buf+7) );
-        pid_setup.groups.ctrl4.kd  = 0.001*( (vs16)(*(data_buf+8)<<8)|*(data_buf+9) );
-			
-         pid_setup.groups.hc_height.kp = 0.001*( (vs16)(*(data_buf+10)<<8)|*(data_buf+11) );
-         pid_setup.groups.hc_height.ki = 0.001*( (vs16)(*(data_buf+12)<<8)|*(data_buf+13) );
-         pid_setup.groups.hc_height.kd = 0.001*( (vs16)(*(data_buf+14)<<8)|*(data_buf+15) );
- 			
-         pid_setup.groups.ctrl3.kp 	= 0.001*( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
-         pid_setup.groups.ctrl3.ki 	= 0.001*( (vs16)(*(data_buf+18)<<8)|*(data_buf+19) );
-         pid_setup.groups.ctrl3.kd 	= 0.001*( (vs16)(*(data_buf+20)<<8)|*(data_buf+21) );
+//		    pid_setup.groups.ctrl4.kp  = 0.001*( (vs16)(*(data_buf+4)<<8)|*(data_buf+5) );
+//        pid_setup.groups.ctrl4.ki  = 0.001*( (vs16)(*(data_buf+6)<<8)|*(data_buf+7) );
+//        pid_setup.groups.ctrl4.kd  = 0.001*( (vs16)(*(data_buf+8)<<8)|*(data_buf+9) );
+//			
+//         pid_setup.groups.ctrl4.kp = 0.001*( (vs16)(*(data_buf+10)<<8)|*(data_buf+11) );
+//         pid_setup.groups.ctrl4.ki = 0.001*( (vs16)(*(data_buf+12)<<8)|*(data_buf+13) );
+//         pid_setup.groups.ctrl4.kd = 0.001*( (vs16)(*(data_buf+14)<<8)|*(data_buf+15) );
+// 			
+//         pid_setup.groups.ctrl3.kp 	= 0.001*( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
+//         pid_setup.groups.ctrl3.ki 	= 0.001*( (vs16)(*(data_buf+18)<<8)|*(data_buf+19) );
+//         pid_setup.groups.ctrl3.kd 	= 0.001*( (vs16)(*(data_buf+20)<<8)|*(data_buf+21) );
 		ANO_DT_Send_Check(*(data_buf+2),sum);
-		PID_Para_Init();
-		flash_save_en_cnt = 1;
+//		PID_Para_Init();
+//		flash_save_en_cnt = 1;
 	}
 	if(*(data_buf+2)==0X14)								//PID5
 	{

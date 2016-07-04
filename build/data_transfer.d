@@ -39,8 +39,6 @@
 .\build\data_transfer.o: .\applications\usbd_user_hid.h
 .\build\data_transfer.o: .\drivers\ak8975.h
 .\build\data_transfer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdbool.h
-.\build\data_transfer.o: .\drivers\ms5611.h
-.\build\data_transfer.o: .\drivers\i2c_soft.h
 .\build\data_transfer.o: applications\rc.h
 .\build\data_transfer.o: applications\ctrl.h
 .\build\data_transfer.o: .\drivers\pwm_out.h

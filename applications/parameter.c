@@ -278,21 +278,21 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.ctrl2.roll.kd  = 0.3;
   pid_setup.groups.ctrl2.yaw.kd   = 0.1;
 	
-	pid_setup.groups.ctrl3.kp = 1.0f;
-	pid_setup.groups.ctrl3.ki = 1.0f;
-	pid_setup.groups.ctrl3.kd = 1.0f;
+	pid_setup.groups.ctrl3.kp = 0.0f;
+	pid_setup.groups.ctrl3.ki = 0.0f;
+	pid_setup.groups.ctrl3.kd = 0.0f;
 	
-	pid_setup.groups.ctrl4.kp = 1.0f;
-	pid_setup.groups.ctrl4.ki = 1.0f;
-	pid_setup.groups.ctrl4.kd = 1.0;
+	pid_setup.groups.ctrl4.kp = 0.0f;
+	pid_setup.groups.ctrl4.ki = 0.0f;
+	pid_setup.groups.ctrl4.kd = 0.0;
 	
-	pid_setup.groups.hc_sp.kp = 1.0f;
-	pid_setup.groups.hc_sp.ki = 1.0f;
-	pid_setup.groups.hc_sp.kd = 1.0f;
+	pid_setup.groups.hc_sp.kp = 0.3f;
+	pid_setup.groups.hc_sp.ki = 1.4f;
+	pid_setup.groups.hc_sp.kd = 0.12f;
 	
-	pid_setup.groups.hc_height.kp = 1.0f;
-	pid_setup.groups.hc_height.ki = 1.0f;
-	pid_setup.groups.hc_height.kd = 1.0f;	
+	pid_setup.groups.hc_height.kp = 1.5f;
+	pid_setup.groups.hc_height.ki = 2.5f;
+	pid_setup.groups.hc_height.kd = 0.0f;	
 	
   Para_WriteSettingToFile();
 	Param_SetSettingToFC();

@@ -3,7 +3,6 @@
 #include "mymath.h"
 #include "filter.h"
 #include "ctrl.h"
-#include "ms5611.h"
 #include "rc.h"
 
 _st_height_pid_v wz_speed_pid_v;
@@ -37,18 +36,18 @@ void Height_Ctrl(float T,float thr)
 		
 		case 1:
 		
-		wz_acc += ( 1 / ( 1 + 1 / ( 20 *3.14f *T ) ) ) *( (reference_v.z *mpu6050.Acc.z + reference_v.x *mpu6050.Acc.x + reference_v.y *mpu6050.Acc.y - 4096 ) - wz_acc );
-		
-		wz_speed_t += ( 1 / ( 1 + 1 / ( 0.5f *3.14f *T ) ) ) *(0.4f*(thr-500) - wz_speed_t);
+//		wz_acc += ( 1 / ( 1 + 1 / ( 20 *3.14f *T ) ) ) *( (reference_v.z *mpu6050.Acc.z + reference_v.x *mpu6050.Acc.x + reference_v.y *mpu6050.Acc.y - 4096 ) - wz_acc );
+//		
+//		wz_speed_t += ( 1 / ( 1 + 1 / ( 0.5f *3.14f *T ) ) ) *(0.4f*(thr-500) - wz_speed_t);
 				
 		if( height_ctrl_mode == 2)
 		{
-			hs_ctrl_cnt++;
-			hs_ctrl_cnt = hs_ctrl_cnt%10;
-			if(hs_ctrl_cnt == 0)
-			{
-				height_speed_ctrl(0.02f,thr,0.4f*ultra_ctrl_out,ultra_speed);
-			}
+//			hs_ctrl_cnt++;
+//			hs_ctrl_cnt = hs_ctrl_cnt%10;
+//			if(hs_ctrl_cnt == 0)
+//			{
+//				height_speed_ctrl(0.02f,thr,0.4f*ultra_ctrl_out,ultra_speed);
+//			}
 			
 			if( ultra_start_f == 0 )
 			{	
@@ -62,7 +61,7 @@ void Height_Ctrl(float T,float thr)
 	////////////////////////////////////////////////////////////	
 		if(height_ctrl_mode)
 		{		
-			height_ctrl_out = wz_speed_pid_v.pid_out;
+			height_ctrl_out = ultra_ctrl_out;//wz_speed_pid_v.pid_out;
 		}
 		else
 		{
@@ -79,9 +78,9 @@ void Height_Ctrl(float T,float thr)
 
 void WZ_Speed_PID_Init()
 {
-	wz_speed_pid.kp = 0.3f *pid_setup.groups.hc_sp.kp; 
-	wz_speed_pid.kd = 1.4f *pid_setup.groups.hc_sp.kd; 
-	wz_speed_pid.ki = 0.12f *pid_setup.groups.hc_sp.ki; 
+	wz_speed_pid.kp = 1.0f *pid_setup.groups.hc_sp.kp; 
+	wz_speed_pid.kd = 1.0f *pid_setup.groups.hc_sp.kd; 
+	wz_speed_pid.ki = 1.0f *pid_setup.groups.hc_sp.ki; 
 }
 
 float wz_speed,wz_speed_old;
@@ -144,9 +143,9 @@ _st_height_pid ultra_pid;
 
 void Ultra_PID_Init()
 {
-	ultra_pid.kp = 1.5;
-	ultra_pid.kd = 2.5;
-	ultra_pid.ki = 0;
+	ultra_pid.kp = 1.0*pid_setup.groups.hc_height.kp;
+	ultra_pid.kd = 1.0*pid_setup.groups.hc_height.kd;
+	ultra_pid.ki = 1.0*pid_setup.groups.hc_height.ki;
 }
 
 float exp_height_speed,exp_height;
@@ -158,76 +157,78 @@ void Ultra_Ctrl(float T,float thr)
 {
 	float ultra_sp_tmp,ultra_dis_tmp;	
 	
-	exp_height_speed = ULTRA_SPEED *my_deathzoom_2(thr - 500,50)/200.0f; //+-ULTRA_SPEEDmm / s
-	exp_height_speed = LIMIT(exp_height_speed ,-ULTRA_SPEED,ULTRA_SPEED);
+//	exp_height_speed = ULTRA_SPEED *my_deathzoom_2(thr - 500,50)/200.0f; //+-ULTRA_SPEEDmm / s
+//	exp_height_speed = LIMIT(exp_height_speed ,-ULTRA_SPEED,ULTRA_SPEED);
 	
-	if( exp_height > ULTRA_MAX_HEIGHT )
-	{
-		if( exp_height_speed > 0 )
-		{
-			exp_height_speed = 0;
-		}
-	}
-	else if( exp_height < 20 )
-	{
-		if( exp_height_speed < 0 )
-		{
-			exp_height_speed = 0;
-		}
-	}
+	exp_height=(CH_filter[THR]+500)*ULTRA_MAX_HEIGHT/1000.0f;
 	
-	exp_height += exp_height_speed *T;
+//	if( exp_height > ULTRA_MAX_HEIGHT )
+//	{
+//		if( exp_height_speed > 0 )
+//		{
+//			exp_height_speed = 0;
+//		}
+//	}
+//	else if( exp_height < 20 )
+//	{
+//		if( exp_height_speed < 0 )
+//		{
+//			exp_height_speed = 0;
+//		}
+//	}
+//	
+//	exp_height += exp_height_speed *T;
 	
-	if( thr < 100 )
-	{
-		exp_height += ( 1 / ( 1 + 1 / ( 0.2f *3.14f *T ) ) ) *( -exp_height);
-	}
+//	if( thr < 100 )
+//	{
+//		exp_height += ( 1 / ( 1 + 1 / ( 0.2f *3.14f *T ) ) ) *( -exp_height);
+//	}
+//	
+//	ultra_sp_tmp = Moving_Median(0,5,ultra_delta/T); //ultra_delta/T;
+//	ultra_dis_tmp = Moving_Median(1,5,ultra_distance);
 	
-	ultra_sp_tmp = Moving_Median(0,5,ultra_delta/T); //ultra_delta/T;
-	ultra_dis_tmp = Moving_Median(1,5,ultra_distance);
-	
-	if( ultra_dis_tmp < 2000 )
-	{
-		if( ABS(ultra_sp_tmp) < 100 )
-		{
-			ultra_speed += ( 1 / ( 1 + 1 / ( 4 *3.14f *T ) ) ) * ( (float)(ultra_sp_tmp) - ultra_speed );
-		}
-		else
-		{
-			ultra_speed += ( 1 / ( 1 + 1 / ( 1.0f *3.14f *T ) ) ) * ( (float)(ultra_sp_tmp) - ultra_speed );
-		}
-	}
+//	if( ultra_dis_tmp < 2000 )
+//	{
+//		if( ABS(ultra_sp_tmp) < 100 )
+//		{
+//			ultra_speed += ( 1 / ( 1 + 1 / ( 4 *3.14f *T ) ) ) * ( (float)(ultra_sp_tmp) - ultra_speed );
+//		}
+//		else
+//		{
+//			ultra_speed += ( 1 / ( 1 + 1 / ( 1.0f *3.14f *T ) ) ) * ( (float)(ultra_sp_tmp) - ultra_speed );
+//		}
+//	}
 	
 
 	
-	if( ultra_dis_tmp < 2000 )
-	{
-		
-		if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 100 )
-		{
-			
-			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 4.0f *3.14f *T ) ) ) *(ultra_dis_tmp - ultra_dis_lpf) ;
-		}
-		else if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 200 )
-		{
-			
-			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 2.2f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
-		}
-		else if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 400 )
-		{
-			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 1.2f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
-		}
-		else
-		{
-			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 0.6f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
-		}
-	}
-	else
-	{
-		
-	}
+//	if( ultra_dis_tmp < 2000 )
+//	{
+//		
+//		if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 100 )
+//		{
+//			
+//			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 4.0f *3.14f *T ) ) ) *(ultra_dis_tmp - ultra_dis_lpf) ;
+//		}
+//		else if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 200 )
+//		{
+//			
+//			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 2.2f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
+//		}
+//		else if( ABS(ultra_dis_tmp - ultra_dis_lpf) < 400 )
+//		{
+//			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 1.2f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
+//		}
+//		else
+//		{
+//			ultra_dis_lpf += ( 1 / ( 1 + 1 / ( 0.6f *3.14f *T ) ) ) *(ultra_dis_tmp- ultra_dis_lpf) ;
+//		}
+//	}
+//	else
+//	{
+//		
+//	}
 
-	ultra_ctrl.err = ( ultra_pid.kp*(exp_height - ultra_dis_lpf) );
+	ultra_ctrl.err = ( ultra_pid.kp*(exp_height - ultra_distance) );
 	
 	ultra_ctrl.err_i += ultra_pid.ki *ultra_ctrl.err *T;
 	
@@ -239,7 +240,7 @@ void Ultra_Ctrl(float T,float thr)
 	
 	ultra_ctrl.pid_out = LIMIT(ultra_ctrl.pid_out,-500,500);
 		
-	ultra_ctrl_out = ultra_ctrl.pid_out;
+	ultra_ctrl_out = ultra_ctrl.pid_out+500;
 	
 	ultra_ctrl.err_old = ultra_ctrl.err;
 }

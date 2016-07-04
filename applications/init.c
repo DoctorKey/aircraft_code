@@ -13,7 +13,6 @@
 #include "i2c_soft.h"
 #include "led.h"
 #include "ctrl.h"
-#include "ms5611.h"
 #include "ak8975.h"
 #include "ultrasonic.h"
 
