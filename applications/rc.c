@@ -44,12 +44,16 @@ float filter_A;
 void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 {
 	u8 i;
-	s16 CH_TMP[CH_NUM];
+	u16 CH_TMP[CH_NUM];
 	static u16 Mapped_CH[CH_NUM];
 
 	if( NS == 1 )
 	{
 		CH_Mapping_Fun(tmp16_CH,Mapped_CH);
+		Mapped_CH[0]=Mapped_CH[0]/10;
+		Mapped_CH[1]=Mapped_CH[1]/10;
+		Mapped_CH[2]=Mapped_CH[2]/10;
+		Mapped_CH[3]=Mapped_CH[3]/10;
 	}
 	else if( NS == 2 )
 	{
@@ -82,7 +86,7 @@ void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 			else
 			{
 				//CH_Max_Min_Record();
-				CH_TMP[i] = ( Mapped_CH[i] ); //映射拷贝数据，大约 1000~2000
+				CH_TMP[i] = Mapped_CH[i]; //映射拷贝数据，大约 1000~2000
 				
 				if( MAX_CH[i] > MIN_CH[i] )
 				{

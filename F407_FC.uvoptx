@@ -164,6 +164,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name></Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -202,7 +203,7 @@
           <Type>0</Type>
           <LineNumber>26</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134240182</Address>
+          <Address>134240166</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -216,18 +217,18 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>158</LineNumber>
+          <LineNumber>104</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134238256</Address>
+          <Address>134236466</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\electricity\鍏夌數璁捐澶ц禌\aircraft_code\applications\height_ctrl.c</Filename>
+          <Filename>F:\electricity\鍏夌數璁捐澶ц禌\aircraft_code\applications\rc.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\F407_FC\applications/height_ctrl.c\158</Expression>
+          <Expression>\\F407_FC\applications/rc.c\104</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -497,6 +498,36 @@
           <count>14</count>
           <WinNumber>2</WinNumber>
           <ItemText>\\F407_FC\drivers/ultrasonic.c\ultra_distance</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Rc_Pwm_In</ItemText>
+        </Ww>
+        <Ww>
+          <count>16</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>CH</ItemText>
+        </Ww>
+        <Ww>
+          <count>17</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>tmp16_CH</ItemText>
+        </Ww>
+        <Ww>
+          <count>18</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Mapped_CH[0],0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>19</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Mapped_CH,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>CH_TMP,0x0A</ItemText>
         </Ww>
       </WatchWindow2>
       <MemoryWindow1>
