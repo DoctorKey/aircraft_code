@@ -5,6 +5,12 @@ APB2   84m
 
 TIMx clk = APBx *2
 
+PWM_IN
+C6----TIM3_CH1---Rc_pwm_in[0]-----roll
+C7----TIM3_CH2---Rc_pwm_in[1]-----pitch
+B0----TIM3_CH3---Rc_pwm_in[2]-----thr
+B1----TIM3_CH4---Rc_pwm_in[3]-----yaw
+
 中断优先级：
 
 第0组：所有4位用于指定响应优先级；

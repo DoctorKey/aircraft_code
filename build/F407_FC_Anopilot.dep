@@ -365,7 +365,7 @@ I (.\drivers\pwm_out.h)(0x55FFF547)
 I (.\drivers\ultrasonic.h)(0x564C74C2)
 I (applications\myctrl.h)(0x5735F41B)
 F (.\applications\data_transfer.h)(0x5704F4F5)()
-F (.\applications\rc.c)(0x577B4B75)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I.\applications -I.\build -I.\drivers -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\CMSIS\Include -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Libraries\USBStack\INC -I.\Libraries\FatFS\src --c99-I F:\electricity\光电设计大赛\aircraft_code\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\build\rc.o --omf_browse .\build\rc.crf --depend .\build\rc.d)
+F (.\applications\rc.c)(0x57807DF9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I.\applications -I.\build -I.\drivers -I.\Libraries\STM32F4xx_StdPeriph_Driver\inc -I.\Libraries\CMSIS\Include -I.\Libraries\CMSIS\ST\STM32F4xx\Include -I.\Libraries\USBStack\INC -I.\Libraries\FatFS\src --c99-I F:\electricity\光电设计大赛\aircraft_code\RTE-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I F:\electricity\MCU\STM32\mdk515\ARM\PACK\Keil\STM32F4xx_DFP\2.5.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS-o .\build\rc.o --omf_browse .\build\rc.crf --depend .\build\rc.d)
 I (applications\include.h)(0x577883EE)
 I (.\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x55FFF547)
 I (.\Libraries\CMSIS\Include\core_cm4.h)(0x55FFF547)
@@ -1448,5 +1448,5 @@ I (Libraries\FatFS\src\ff.h)(0x55FFF547)
 I (Libraries\FatFS\src\integer.h)(0x55FFF547)
 I (Libraries\FatFS\src\ffconf.h)(0x55FFF547)
 I (Libraries\FatFS\src\diskio.h)(0x55FFF547)
-F (.\doc\note.txt)(0x55FFF547)()
+F (.\doc\note.txt)(0x57808491)()
 F (.\doc\record.txt)(0x564C74C2)()
