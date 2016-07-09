@@ -290,8 +290,8 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.hc_sp.ki = 1.4f;
 	pid_setup.groups.hc_sp.kd = 0.12f;
 	
-	pid_setup.groups.hc_height.kp = 1.5f;
-	pid_setup.groups.hc_height.ki = 2.5f;
+	pid_setup.groups.hc_height.kp = 0.1f;
+	pid_setup.groups.hc_height.ki = 0.1f;
 	pid_setup.groups.hc_height.kd = 0.0f;	
 	
   Para_WriteSettingToFile();

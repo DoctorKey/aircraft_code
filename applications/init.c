@@ -61,10 +61,7 @@ u8 All_Init()
 	{
 		LED_Mag_Err();
 	}
-//	else if( !ms5611_ok )
-//	{
-//		LED_MS5611_Err();
-//	}
+
 	return (1);
 }
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/

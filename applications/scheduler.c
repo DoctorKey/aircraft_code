@@ -47,7 +47,6 @@ void Loop_check()  //TIME INTTERRUPT
 void Duty_1ms()
 {
 	Get_Cycle_T(1);
-	//LED_Display( LED_Brightness );								//20级led渐变显示
 	ANO_DT_Data_Exchange();												//数传通信定时调用
 }
 

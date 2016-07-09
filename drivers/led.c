@@ -14,102 +14,21 @@ void LED_Init()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-//	RCC_AHB1PeriphClockCmd(ANO_RCC_LED,ENABLE);
-
-//	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-//	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;
-//	GPIO_InitStructure.GPIO_Pin   = ANO_Pin_LED1| ANO_Pin_LED2| ANO_Pin_LED3| ANO_Pin_LED4;
-//	GPIO_Init(ANO_GPIO_LED, &GPIO_InitStructure);
-	
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB|RCC_AHB1Periph_GPIOG,ENABLE);	//使能GPIOC的外设时钟
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;	//选择要用的GPIO引脚		 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;//设置引脚为普通输出模式		
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;//设置引脚为推挽输出
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//设置引脚速度为100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//设置引脚为上拉 		 
-	GPIO_Init(GPIOB, &GPIO_InitStructure);//调用库函数，初始化GPIO
-	
-//	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED1);		
-//	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED2);		
-//	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED3);		
-//	GPIO_SetBits(ANO_GPIO_LED, ANO_Pin_LED4);		
-	
-// 	GPIO_ResetBits(ANO_GPIO_LED, ANO_Pin_LED1);		
-// 	GPIO_ResetBits(ANO_GPIO_LED, ANO_Pin_LED2);		
-// 	GPIO_ResetBits(ANO_GPIO_LED, ANO_Pin_LED3);		
-// 	GPIO_ResetBits(ANO_GPIO_LED, ANO_Pin_LED4);	
-
-
-}
-
-void LED_Display( u8 duty[4] ) //0~20
-{/*
-	static u8 LED_cnt[4];
-	u8 i;
-	
-	for(i=0;i<4;i++)
-	{
-		if( LED_cnt[i] < 19 )
-		{
-			LED_cnt[i]++;
-		}
-		else
-		{
-			LED_cnt[i] = 0;
-		}
-			
-		if( LED_cnt[i] < duty[i] )
-		{
-			switch(i)
-			{
-				case 0:	
-					LED1_ON;
-				break;
-				case 1:	
-					LED2_ON;
-				break;
-				case 2:	
-					LED3_ON;
-				break;
-				case 3:	
-					LED4_ON;
-				break;
-			}
-		}
-		else
-		{
-						switch(i)
-			{
-				case 0:	
-					LED1_OFF;
-				break;
-				case 1:	
-					LED2_OFF;
-				break;
-				case 2:	
-					LED3_OFF;
-				break;
-				case 3:	
-					LED4_OFF;
-				break;
-			}
-		}
-	}*/
+	GPIO_Init(GPIOB, &GPIO_InitStructure);//调用库函数，初始化GPIO	
 }
 
 #include "rc.h"
 #include "ak8975.h"
 
-extern u8 height_ctrl_mode;
-
-u8 LED_Brightness[4] = {0,20,0,0}; //TO 20
-u8 LED_status[2];  //  0:old;  1:now
 u8 flag=1;
 void LED_Duty()
 {
-//	static s16 led_temp;
-//	static u8 f;
 	if(flag==0){
 		LED0_ON;
 		flag=1;
@@ -117,189 +36,22 @@ void LED_Duty()
 		LED0_OFF;
 		flag=0;
 	}
-/*	if(Mag_CALIBRATED)
-	{
-		LED_status[1] = 1;
-	}
-	else if(height_ctrl_mode==1)
-	{
-		LED_status[1] = 2;
-	}
-	else if(height_ctrl_mode==2)
-	{
-		LED_status[1] = 3;
-	}
-	else if(height_ctrl_mode==0)
-	{
-		LED_status[1] = 0;
-	}
-	
-	switch(LED_status[1])
-	{
-		case 0:
-			if(!fly_ready)
-			{
-				if( f )
-				{
-					led_temp += 4;
-					if(led_temp>100) f = 0;
-				}
-				else
-				{
-					led_temp -= 4;
-					if(led_temp < 0 ) f = 1;
-				}
-				
-				LED_Brightness[1] = led_temp/10;
-				LED_Brightness[2] = led_temp/10;
-				LED_Brightness[3] = led_temp/10;
-			}
-			else
-			{
-				LED_Brightness[0] = 0;
-				LED_Brightness[1] = 0;
-				LED_Brightness[2] = 0;
-				LED_Brightness[3] = 20;
-			}
-		break;
-		case 1:
-				if( f )
-				{
-					led_temp += 12;
-					if(led_temp>100) f = 0;
-				}
-				else
-				{
-					led_temp -= 12;
-					if(led_temp < 0 ) f = 1;
-				}
-				LED_Brightness[0] = 0;			
-				LED_Brightness[1] = led_temp/10;
-				LED_Brightness[2] = 0;
-				LED_Brightness[3] = led_temp/10;
-		break;
-		case 2:
-			if(!fly_ready)
-			{
-				if( f )
-				{
-					led_temp += 4;
-					if(led_temp>100) f = 0;
-				}
-				else
-				{
-					led_temp -= 4;
-					if(led_temp < 0 ) f = 1;
-				}
-				
-				LED_Brightness[1] = 0;
-				LED_Brightness[2] = led_temp/10;
-				LED_Brightness[3] = led_temp/10;
-			}
-			else
-			{
-				LED_Brightness[0] = 0;
-				LED_Brightness[1] = 0;
-				LED_Brightness[2] = 12;
-				LED_Brightness[3] = 12;
-			}
-		break;
-		case 3:
-			if(!fly_ready)
-			{
-				if( f )
-				{
-					led_temp += 4;
-					if(led_temp>100) f = 0;
-				}
-				else
-				{
-					led_temp -= 4;
-					if(led_temp < 0 ) f = 1;
-				}
-				
-				LED_Brightness[1] = led_temp/10;
-				LED_Brightness[2] = led_temp/10;
-				LED_Brightness[3] = 0;
-			}
-			else
-			{
-				LED_Brightness[0] = 0;
-				LED_Brightness[1] = 12;
-				LED_Brightness[2] = 12;
-				LED_Brightness[3] = 0;
-			}
-		break;
-				
-		default:break;
-
-	}
-*/
 }
 
 void LED_MPU_Err(void)
-{/*
-	LED1_OFF;
-	LED2_OFF;
-	LED3_OFF;
-	LED4_OFF;
-	while(1)
-	{
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(200);
-		
-	}*/
-}
-
-void LED_Mag_Err(void)
-{/*
-	LED1_OFF;
-	LED2_OFF;
-	LED3_OFF;
-	LED4_OFF;
-	while(1)
-	{
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(150);
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(600);
-	}*/
+{	
 	while(1)
 	{
 		LED0_ON;
 	}
 }
 
-void LED_MS5611_Err(void)
-{/*
-	LED1_OFF;
-	LED2_OFF;
-	LED3_OFF;
-	LED4_OFF;
+void LED_Mag_Err(void)
+{
 	while(1)
 	{
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(150);
-		
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(150);
-		
-		LED1_ON;
-		Delay_ms(150);
-		LED1_OFF;
-		Delay_ms(600);
+		LED0_ON;
 	}
-*/
 }
 
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/

@@ -25,13 +25,10 @@
 /*********************************************/
 
 void LED_Init(void);
-void LED_Display( u8 []);
 void LED_Duty(void);
 
 void LED_MPU_Err(void);
 void LED_Mag_Err(void);
-void LED_MS5611_Err(void);
 
-extern u8 LED_Brightness[4];
 #endif
 
