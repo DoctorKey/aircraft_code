@@ -50,10 +50,6 @@ void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 	if( NS == 1 )
 	{
 		CH_Mapping_Fun(tmp16_CH,Mapped_CH);
-//		Mapped_CH[0]=Mapped_CH[0]/10;
-//		Mapped_CH[1]=Mapped_CH[1]/10;
-//		Mapped_CH[2]=Mapped_CH[2]/10;
-//		Mapped_CH[3]=Mapped_CH[3]/10;
 	}
 	else if( NS == 2 )
 	{

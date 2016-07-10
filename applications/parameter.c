@@ -286,13 +286,13 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.ctrl4.ki = 0.0f;
 	pid_setup.groups.ctrl4.kd = 0.0;
 	
-	pid_setup.groups.hc_sp.kp = 0.3f;
-	pid_setup.groups.hc_sp.ki = 1.4f;
-	pid_setup.groups.hc_sp.kd = 0.12f;
+	pid_setup.groups.hc_sp.kp = 1.0f;
+	pid_setup.groups.hc_sp.ki = 1.0f;
+	pid_setup.groups.hc_sp.kd = 1.0f;
 	
-	pid_setup.groups.hc_height.kp = 0.1f;
-	pid_setup.groups.hc_height.ki = 0.1f;
-	pid_setup.groups.hc_height.kd = 0.0f;	
+	pid_setup.groups.hc_height.kp = 1.0f;
+	pid_setup.groups.hc_height.ki = 1.0f;
+	pid_setup.groups.hc_height.kd = 1.0f;	
 	
   Para_WriteSettingToFile();
 	Param_SetSettingToFC();
@@ -305,7 +305,6 @@ void PID_Para_Init()
 //	WZ_Acc_PID_Init();
 	WZ_Speed_PID_Init();
 	Ultra_PID_Init();
-//	Baro_PID_Init();
 
 }
 

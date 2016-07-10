@@ -97,3 +97,5 @@ beta 1.6.2 修正罗盘原始数据的一个错误。
 beta 1.6.2_fix 上版漏掉一句代码，导致解锁后yaw混乱，I'm sorry。。。
 
 beta 1.6.3 新融合策略，解决加速度零点漂移（水平姿态）。
+
+修改定高，height_ctrl.c height_ctrl.h ctrl.c

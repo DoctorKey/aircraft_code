@@ -198,7 +198,8 @@ void Thr_Ctrl(float T)
 	#if(CTRL_HEIGHT)
 	Height_Ctrl(T,thr);
 	
-	thr_value = height_ctrl_out;//Thr_Weight *height_ctrl_out;   //实际使用值
+	thr_value = Thr_Weight *height_ctrl_out;   //原程序
+//	thr_value = height_ctrl_out;//我的程序
 	#else
 	thr_value = thr;   //实际使用值
 	#endif
