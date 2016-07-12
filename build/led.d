@@ -31,7 +31,6 @@
 .\build\led.o: .\applications\parameter.h
 .\build\led.o: .\drivers\pwm_in.h
 .\build\led.o: .\drivers\usart.h
-.\build\led.o: .\applications\usbd_user_hid.h
 .\build\led.o: .\applications\data_transfer.h
 .\build\led.o: .\applications\height_ctrl.h
 .\build\led.o: .\applications\rc.h

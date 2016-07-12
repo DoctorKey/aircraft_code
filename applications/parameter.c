@@ -12,196 +12,12 @@
 #include "ak8975.h"
 #include "ctrl.h"
 #include "string.h"
-#include "ff.h"
+//#include "ff.h"
 #include "height_ctrl.h"
 
-#define SENSOR_SETUP_FILE      "sensor.bin"
-#define PID_SETUP_FILE         "pid.bin"
 u8 flash_init_error;
-static sensor_setup_t sensor_setup;
+sensor_setup_t sensor_setup;
 pid_setup_t pid_setup;
-
-/* 文件相关定义 */
-static FATFS fs;
-static 	FIL file;
-static 	DIR DirInf;
-	
-static int32_t Para_ReadSettingFromFile(void)
-{
-	FRESULT result;
-	uint32_t bw;
-
- 	/* 挂载文件系统 */
-	result = f_mount(&fs, "0:", 1);			/* Mount a logical drive */
-	if (result != FR_OK)
-	{
-		/* 如果挂载不成功，进行格式化 */
-		result = f_mkfs("0:",0,0);
-		if (result != FR_OK)
-		{
-			 return -1;     //flash有问题，无法格式化
-		}
-		else
-		{
-			/* 重新进行挂载 */
-			result = f_mount(&fs, "0:", 0);			/* Mount a logical drive */
-	   if (result != FR_OK)
-      {
-			 	/* 卸载文件系统 */
-	      f_mount(NULL, "0:", 0);
-			 return -2 ;
-			}
-		}
-	}
-
-	/* 打开根文件夹 */
-	result = f_opendir(&DirInf, "/"); 
-	if (result != FR_OK)
-	{
-		/* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-		return -3;
-	}
-
-	/* 打开文件 */
-	result = f_open(&file, SENSOR_SETUP_FILE, FA_OPEN_EXISTING | FA_READ);
-	if (result !=  FR_OK)
-	{
-	  /* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-   /* 文件不存在 */
-		return -4;
-	}
-
-	/* 读取Sensor配置文件 */
-	result = f_read(&file, &sensor_setup.raw_data, sizeof(sensor_setup), &bw);
-	if (bw > 0)
-	{
-		/* 关闭文件*/
-	 f_close(&file);
-		/* 打开文件 */
-	 result = f_open(&file, PID_SETUP_FILE, FA_OPEN_EXISTING | FA_READ);
-	  if (result !=  FR_OK)
-	 {
-		/* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-		return -4;
-	 }
-		/* 读取PID配置文件 */
-	 result = f_read(&file, &pid_setup.raw_data, sizeof(pid_setup), &bw);
-    if(bw > 0)
-		{
-		 /* 关闭文件*/
-	   f_close(&file);
-		 	/* 卸载文件系统 */
-	   f_mount(NULL, "0:", 0);
-			return 1;
-		}else
-		{
-		 /* 关闭文件*/
-	   f_close(&file);
-		 	/* 卸载文件系统 */
-	    f_mount(NULL, "0:", 0);
-			return -4;
-		}
-	}else
-  {
-	 /* 关闭文件*/
-	 f_close(&file);
-	 	/* 卸载文件系统 */
-	 f_mount(NULL, "0:", 0);
-	 return -5;
-	}
-
-}
-
-static int32_t Para_WriteSettingToFile(void)
-{
-	FRESULT result;
-	uint32_t bw;
-
- 	/* 挂载文件系统 */
-	result = f_mount(&fs, "0:", 0);			/* Mount a logical drive */
-	if (result != FR_OK)
-	{
-		/* 如果挂载不成功，进行格式化 */
-		result = f_mkfs("0:",0,0);
-		if (result != FR_OK)
-		{
-			 return -1;     //flash有问题，无法格式化
-		}
-		else
-		{
-			/* 重新进行挂载 */
-			result = f_mount(&fs, "0:", 0);			/* Mount a logical drive */
-	   if (result != FR_OK)
-      {
-			 	/* 卸载文件系统 */
-	      f_mount(NULL, "0:", 0);
-			 return -2 ;
-			}
-		}
-	}
-
-	/* 打开根文件夹 */
-	result = f_opendir(&DirInf, "/"); 
-	if (result != FR_OK)
-	{
-		/* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-		return -3;
-	}
-
-	/* 打开文件 */
-	result = f_open(&file, SENSOR_SETUP_FILE, FA_CREATE_ALWAYS | FA_WRITE);
-	if (result !=  FR_OK)
-	{
-	  /* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-		return -4;
-	}
-
-	/* 写入Sensor配置文件 */
-	result = f_write(&file, &sensor_setup.raw_data, sizeof(sensor_setup), &bw);
-	if (result == FR_OK)
-	{
-		/* 关闭文件*/
-	 f_close(&file);
-		/* 打开文件 */
-	 result = f_open(&file, PID_SETUP_FILE, FA_CREATE_ALWAYS | FA_WRITE);
-	  if (result !=  FR_OK)
-	 {
-		/* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-		return -4;
-	 }
-		/* 写入PID配置文件 */
-	 result = f_write(&file, &pid_setup.raw_data, sizeof(pid_setup), &bw);
-    if(result == FR_OK)
-		{
-	 		/* 关闭文件*/
-	    f_close(&file);
-		 	/* 卸载文件系统 */
-	   f_mount(NULL, "0:", 0);
-			return 1;
-		}else
-		{
-		  /* 关闭文件*/
-	   f_close(&file);
-		 	/* 卸载文件系统 */
-	    f_mount(NULL, "0:", 0);
-			return -4;
-		}
-	}else
-  {
-	  /* 关闭文件*/
-	  f_close(&file);
-		/* 卸载文件系统 */
-	  f_mount(NULL, "0:", 0);
-	 return -5;
-	}
-
-}
 
 
 static void  Param_SetSettingToFC(void) 
@@ -227,8 +43,6 @@ static void  Param_SetSettingToFC(void)
 
 void Para_ResetToFactorySetup(void)
 {
-	/* 如果挂载不成功，进行格式化 */
-		f_mkfs("0:",1,0);
 	
 // 	/* 加速计默认校准值 */
 // 	sensor_setup.Offset.Accel.x = 0;
@@ -294,7 +108,6 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.hc_height.ki = 1.0f;
 	pid_setup.groups.hc_height.kd = 1.0f;	
 	
-  Para_WriteSettingToFile();
 	Param_SetSettingToFC();
 	PID_Para_Init();
 }
@@ -310,12 +123,8 @@ void PID_Para_Init()
 
 void Para_Init()
 {
-	int32_t result = Para_ReadSettingFromFile();
-  if(result < 0)
-  {
-	 Para_ResetToFactorySetup();
-	 flash_init_error = 1;
-	}
+	Para_ResetToFactorySetup();
+	flash_init_error = 1;
 	Param_SetSettingToFC();
 	
 	PID_Para_Init();
@@ -328,7 +137,6 @@ void Param_SaveAccelOffset(xyz_f_t *offset)
 	
  sensor_setup.Offset.Acc_Temperature = mpu6050.Acc_Temprea_Offset ;
 	
- Para_WriteSettingToFile();
 }
 
 void Param_SaveGyroOffset(xyz_f_t *offset)
@@ -338,14 +146,12 @@ void Param_SaveGyroOffset(xyz_f_t *offset)
 	
  sensor_setup.Offset.Gyro_Temperature = mpu6050.Gyro_Temprea_Offset ;
 	
- Para_WriteSettingToFile();
 }
 
 void Param_SaveMagOffset(xyz_f_t *offset)
 {
  memcpy(&ak8975.Mag_Offset,offset,sizeof(xyz_f_t));
  memcpy(&sensor_setup.Offset.Mag, offset,sizeof(xyz_f_t));
- Para_WriteSettingToFile();
 }
 
 void Param_Save_3d_offset(xyz_f_t *offset)
@@ -353,7 +159,6 @@ void Param_Save_3d_offset(xyz_f_t *offset)
  memcpy(&mpu6050.vec_3d_cali,offset,sizeof(xyz_f_t));
  memcpy(&sensor_setup.Offset.vec_3d_cali, offset,sizeof(xyz_f_t));
 	
- Para_WriteSettingToFile();
 }
 
 void Param_SavePID(void)
@@ -365,7 +170,6 @@ void Param_SavePID(void)
  memcpy(&pid_setup.groups.ctrl2.roll,&ctrl_2.PID[PIDROLL],sizeof(pid_t));
  memcpy(&pid_setup.groups.ctrl2.pitch,&ctrl_2.PID[PIDPITCH],sizeof(pid_t));
  memcpy(&pid_setup.groups.ctrl2.yaw,&ctrl_2.PID[PIDYAW],sizeof(pid_t));
- Para_WriteSettingToFile();
 }
 extern u16 flash_save_en_cnt;
 

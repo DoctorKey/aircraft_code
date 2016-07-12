@@ -30,7 +30,6 @@
 .\build\ultrasonic.o: .\applications\parameter.h
 .\build\ultrasonic.o: .\drivers\pwm_in.h
 .\build\ultrasonic.o: .\drivers\usart.h
-.\build\ultrasonic.o: .\applications\usbd_user_hid.h
 .\build\ultrasonic.o: .\applications\data_transfer.h
 .\build\ultrasonic.o: .\applications\height_ctrl.h
 .\build\ultrasonic.o: drivers\ultrasonic.h

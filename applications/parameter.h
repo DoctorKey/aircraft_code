@@ -67,8 +67,8 @@ typedef union
 }pid_setup_t;
 
 extern pid_setup_t pid_setup;
+extern sensor_setup_t sensor_setup;
 
-void Senser_Calibrat_Read(void);
 void PID_Para_Read(void);
 void Para_Init(void);
 

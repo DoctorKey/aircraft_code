@@ -31,7 +31,6 @@
 .\build\mpu6050.o: .\applications\parameter.h
 .\build\mpu6050.o: .\drivers\pwm_in.h
 .\build\mpu6050.o: .\drivers\usart.h
-.\build\mpu6050.o: .\applications\usbd_user_hid.h
 .\build\mpu6050.o: .\applications\data_transfer.h
 .\build\mpu6050.o: .\applications\height_ctrl.h
 .\build\mpu6050.o: drivers\i2c_soft.h

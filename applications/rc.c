@@ -136,6 +136,7 @@ void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 
 u8 fly_ready = 0;
 s16 ready_cnt=0;
+u8 height_mode=0;
 
 void Fly_Ready(float T)
 {

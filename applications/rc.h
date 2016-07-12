@@ -10,7 +10,7 @@ void Mode(void);
 
 extern float CH_filter[];
 extern s16 CH[];
-extern u8 fly_ready,NS ;
+extern u8 fly_ready,NS,height_mode ;
 extern u8 height_ctrl_mode ;
 extern u16 RX_CH[];
 

@@ -36,7 +36,6 @@
 .\build\data_transfer.o: .\drivers\time.h
 .\build\data_transfer.o: .\applications\init.h
 .\build\data_transfer.o: .\drivers\pwm_in.h
-.\build\data_transfer.o: .\applications\usbd_user_hid.h
 .\build\data_transfer.o: .\drivers\ak8975.h
 .\build\data_transfer.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdbool.h
 .\build\data_transfer.o: applications\rc.h

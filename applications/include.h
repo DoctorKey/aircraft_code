@@ -8,7 +8,6 @@
 #include "parameter.h"
 #include "pwm_in.h"
 #include "usart.h"
-#include "usbd_user_hid.h"
 #include "data_transfer.h"
 
 //================ϵͳ===================

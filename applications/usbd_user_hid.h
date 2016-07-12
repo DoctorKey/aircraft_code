@@ -5,7 +5,7 @@
 
 extern void Usb_Hid_Init(void) ;
 void Usb_Hid_Adddata(u8 *dataToSend , u8 length);
-void Usb_Hid_Send(void);
+//void Usb_Hid_Send(void);
 
 #endif
 

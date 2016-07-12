@@ -28,8 +28,6 @@ u8 All_Init()
 	
 	PWM_Out_Init(400);				//初始化电调输出功能
 	
-//	MS5611_Init();						//气压计初始化
-	
 	Delay_ms(200);						//延时
 	
 	MPU6050_Init(20);   			//加速度计、陀螺仪初始化，配置20hz低通
@@ -38,8 +36,6 @@ u8 All_Init()
 	
 	Usart2_Init(115200);			//串口2初始化，函数参数为波特率
 	//Usart2_Init(256000);
-
-	Usb_Hid_Init();						//飞控usb接口的hid初始化
 	
 	//TIM_INIT();
 	

@@ -195,9 +195,16 @@ void Thr_Ctrl(float T)
 		Thr_Low = 0;
 	}
 	
-	#if(CTRL_HEIGHT)
+	#if(CTRL_HEIGHT)	
+	if(height_mode==1)//起飞
+	{
+		take_off();
+	}
+	else if(height_mode==2)//降落
+	{
+		land();
+	}
 	Height_Ctrl(T,thr);
-	
 	thr_value = Thr_Weight *height_ctrl_out;   //原程序
 //	thr_value = height_ctrl_out;//我的程序
 	#else

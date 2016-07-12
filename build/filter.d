@@ -30,7 +30,6 @@
 .\build\filter.o: applications\parameter.h
 .\build\filter.o: .\drivers\pwm_in.h
 .\build\filter.o: .\drivers\usart.h
-.\build\filter.o: applications\usbd_user_hid.h
 .\build\filter.o: applications\data_transfer.h
 .\build\filter.o: applications\height_ctrl.h
 .\build\filter.o: applications\filter.h

@@ -32,7 +32,6 @@
 .\build\ak8975.o: .\applications\parameter.h
 .\build\ak8975.o: .\drivers\pwm_in.h
 .\build\ak8975.o: .\drivers\usart.h
-.\build\ak8975.o: .\applications\usbd_user_hid.h
 .\build\ak8975.o: .\applications\data_transfer.h
 .\build\ak8975.o: .\applications\height_ctrl.h
 .\build\ak8975.o: .\applications\mymath.h

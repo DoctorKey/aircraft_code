@@ -3,22 +3,43 @@
 #include "data_transfer.h"
 #include "rc.h"
 #include "ctrl.h"
+#include "ultrasonic.h"
+#define TAKE_OFF_HEIGHT 700
 void take_off()
 {
-	int thr;
-//	for(thr=-400;thr<=-100;thr+=10){
-//		CH_filter[THR]=thr;
-//		Delay_ms(10);
-//	}
-//	Feed_Rc_Dog(1);
-	for(thr=1100;thr<=1400;thr+=1){
-		Feed_Rc_Dog(1);
-		Rc_Pwm_In[2]=thr;
-		Delay_ms(10);
+	if(ultra_distance>200)
+	{
+		CH[2]=-400;	
+		fly_ready=1;
+	}
+		
+//	delay_ms(2000);
+	if(ultra_distance>TAKE_OFF_HEIGHT)
+	{
+		height_mode=0;//结束起飞模式
 	}
 }
-void drop()
+void land()
 {
-	
+	if(ultra_distance>600)
+	{
+		if(CH[2]>-200)
+		{
+			CH[2]=CH[2]-10;
+		}
+	}
+	else if(ultra_distance>400)//400~600
+	{
+		if(CH[2]>-200)
+		{
+			CH[2]=CH[2]-1;
+		}
+	}
+	else
+	{
+			CH[2]=-400;
+			fly_ready=0;
+			height_mode=0;//结束降落模式
+	}	
 }
 

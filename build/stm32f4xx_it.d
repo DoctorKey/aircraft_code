@@ -30,6 +30,5 @@
 .\build\stm32f4xx_it.o: applications\parameter.h
 .\build\stm32f4xx_it.o: .\drivers\pwm_in.h
 .\build\stm32f4xx_it.o: .\drivers\usart.h
-.\build\stm32f4xx_it.o: applications\usbd_user_hid.h
 .\build\stm32f4xx_it.o: applications\data_transfer.h
 .\build\stm32f4xx_it.o: applications\height_ctrl.h

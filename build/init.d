@@ -30,7 +30,6 @@
 .\build\init.o: applications\parameter.h
 .\build\init.o: .\drivers\pwm_in.h
 .\build\init.o: .\drivers\usart.h
-.\build\init.o: applications\usbd_user_hid.h
 .\build\init.o: applications\data_transfer.h
 .\build\init.o: applications\height_ctrl.h
 .\build\init.o: .\drivers\pwm_out.h

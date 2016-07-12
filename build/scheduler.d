@@ -30,7 +30,6 @@
 .\build\scheduler.o: applications\parameter.h
 .\build\scheduler.o: .\drivers\pwm_in.h
 .\build\scheduler.o: .\drivers\usart.h
-.\build\scheduler.o: applications\usbd_user_hid.h
 .\build\scheduler.o: applications\data_transfer.h
 .\build\scheduler.o: applications\height_ctrl.h
 .\build\scheduler.o: .\drivers\mpu6050.h

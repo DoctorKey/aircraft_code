@@ -30,7 +30,6 @@
 .\build\parameter.o: applications\parameter.h
 .\build\parameter.o: .\drivers\pwm_in.h
 .\build\parameter.o: .\drivers\usart.h
-.\build\parameter.o: applications\usbd_user_hid.h
 .\build\parameter.o: applications\data_transfer.h
 .\build\parameter.o: applications\height_ctrl.h
 .\build\parameter.o: .\drivers\mpu6050.h
@@ -43,6 +42,3 @@
 .\build\parameter.o: applications\mymath.h
 .\build\parameter.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
 .\build\parameter.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\string.h
-.\build\parameter.o: .\Libraries\FatFS\src\ff.h
-.\build\parameter.o: .\Libraries\FatFS\src\integer.h
-.\build\parameter.o: .\Libraries\FatFS\src\ffconf.h

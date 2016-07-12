@@ -9,8 +9,8 @@
 #include "mpu6050.h"
 #include "data_transfer.h"
 
-void take_off();
-void drop();
+void take_off(void);
+void land(void);
 
 #endif
 

@@ -33,7 +33,6 @@
 .\build\imu.o: applications\init.h
 .\build\imu.o: .\drivers\pwm_in.h
 .\build\imu.o: .\drivers\usart.h
-.\build\imu.o: applications\usbd_user_hid.h
 .\build\imu.o: applications\data_transfer.h
 .\build\imu.o: applications\height_ctrl.h
 .\build\imu.o: .\drivers\ak8975.h

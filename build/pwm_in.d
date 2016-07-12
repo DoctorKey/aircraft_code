@@ -31,6 +31,5 @@
 .\build\pwm_in.o: .\applications\init.h
 .\build\pwm_in.o: .\applications\parameter.h
 .\build\pwm_in.o: .\drivers\usart.h
-.\build\pwm_in.o: .\applications\usbd_user_hid.h
 .\build\pwm_in.o: .\applications\data_transfer.h
 .\build\pwm_in.o: .\applications\height_ctrl.h

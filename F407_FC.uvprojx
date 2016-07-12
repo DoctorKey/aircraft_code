@@ -575,16 +575,6 @@
               <FilePath>.\applications\rc.h</FilePath>
             </File>
             <File>
-              <FileName>usb_config.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\applications\usb_config.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_user_hid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\applications\usbd_user_hid.c</FilePath>
-            </File>
-            <File>
               <FileName>version.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\applications\version.c</FilePath>
@@ -705,16 +695,6 @@
               <FilePath>.\drivers\usart.h</FilePath>
             </File>
             <File>
-              <FileName>usbd_STM32F4xx_FS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers\usbd_STM32F4xx_FS.c</FilePath>
-            </File>
-            <File>
-              <FileName>drv_w25qxx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers\drv_w25qxx.c</FilePath>
-            </File>
-            <File>
               <FileName>ultrasonic.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\drivers\ultrasonic.c</FilePath>
@@ -808,41 +788,6 @@
               <FileName>startup_stm32f4xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Libraries\CMSIS\ST\STM32F4xx\Source\Templates\arm\startup_stm32f4xx.s</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>USBStack</GroupName>
-          <Files>
-            <File>
-              <FileName>usbd_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\USBStack\SRC\usbd_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_core_hid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\USBStack\SRC\usbd_core_hid.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbd_hid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\USBStack\SRC\usbd_hid.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FatFs</GroupName>
-          <Files>
-            <File>
-              <FileName>diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\FatFS\src\diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Libraries\FatFS\src\ff.c</FilePath>
             </File>
           </Files>
         </Group>

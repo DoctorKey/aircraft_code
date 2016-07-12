@@ -31,7 +31,6 @@
 .\build\myctrl.o: applications\parameter.h
 .\build\myctrl.o: .\drivers\pwm_in.h
 .\build\myctrl.o: .\drivers\usart.h
-.\build\myctrl.o: applications\usbd_user_hid.h
 .\build\myctrl.o: applications\data_transfer.h
 .\build\myctrl.o: applications\height_ctrl.h
 .\build\myctrl.o: .\drivers\pwm_out.h
@@ -41,3 +40,4 @@
 .\build\myctrl.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
 .\build\myctrl.o: .\drivers\mpu6050.h
 .\build\myctrl.o: applications\ctrl.h
+.\build\myctrl.o: .\drivers\ultrasonic.h

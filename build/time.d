@@ -30,6 +30,5 @@
 .\build\time.o: .\applications\parameter.h
 .\build\time.o: .\drivers\pwm_in.h
 .\build\time.o: .\drivers\usart.h
-.\build\time.o: .\applications\usbd_user_hid.h
 .\build\time.o: .\applications\data_transfer.h
 .\build\time.o: .\applications\height_ctrl.h

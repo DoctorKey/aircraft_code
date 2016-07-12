@@ -35,7 +35,6 @@
 .\build\height_ctrl.o: applications\init.h
 .\build\height_ctrl.o: .\drivers\pwm_in.h
 .\build\height_ctrl.o: .\drivers\usart.h
-.\build\height_ctrl.o: applications\usbd_user_hid.h
 .\build\height_ctrl.o: applications\data_transfer.h
 .\build\height_ctrl.o: .\drivers\pwm_out.h
 .\build\height_ctrl.o: applications\rc.h

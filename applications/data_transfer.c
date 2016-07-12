@@ -15,7 +15,6 @@
 #include "rc.h"
 #include "ctrl.h"
 #include "time.h"
-#include "usbd_user_hid.h"
 #include "ultrasonic.h"
 #include "myctrl.h"
 
@@ -159,9 +158,10 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_pid4)
 	{
 		f.send_pid4 = 0;
-		ANO_DT_Send_PID(4,pid_setup.groups.ctrl4.kp,pid_setup.groups.ctrl4.ki,pid_setup.groups.ctrl4.kd,
-											0						,0						,0						,
-											0						,0						,0						);
+		ANO_DT_Send_PID(4,sensor_setup.Offset.Accel.x,sensor_setup.Offset.Accel.y,sensor_setup.Offset.Accel.z,
+											sensor_setup.Offset.Gyro.x,sensor_setup.Offset.Gyro.y,sensor_setup.Offset.Gyro.z,
+											sensor_setup.Offset.Mag.x,sensor_setup.Offset.Mag.y,sensor_setup.Offset.Mag.z);
+		//pid_setup.groups.ctrl4.kp,pid_setup.groups.ctrl4.ki,pid_setup.groups.ctrl4.kd,
 	}
 	else if(f.send_location == 2)
 	{
@@ -173,8 +173,7 @@ void ANO_DT_Data_Exchange(void)
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-	Usb_Hid_Send();					
+/////////////////////////////////////////////////////////////////////////////////////				
 /////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -183,9 +182,6 @@ void ANO_DT_Data_Exchange(void)
 //移植时，用户应根据自身应用的情况，根据使用的通信方式，实现此函数
 void ANO_DT_Send_Data(u8 *dataToSend , u8 length)
 {
-#ifdef ANO_DT_USE_USB_HID
-	Usb_Hid_Adddata(data_to_send,length);
-#endif
 #ifdef ANO_DT_USE_USART2
 	Usart2_Send(data_to_send, length);
 #endif
@@ -364,17 +360,18 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 		}else if(*(data_buf+4)==0X02)
 		{
 			CH[2]=-400;
+			CH[0]=0;
+			CH[1]=0;
+			CH[3]=0;
 			fly_ready=1;
 		}
-	}
-	if(*(data_buf+2)==0X05)//起飞降落
-	{
-		if(*(data_buf+4)==0X01)
+		else if(*(data_buf+4)==0X03)
 		{
-			take_off();
-		}else if(*(data_buf+4)==0X02)
+			height_mode=1;//起飞
+		}
+		else if(*(data_buf+4)==0X04)
 		{
-			drop();
+			height_mode=2;//降落模式
 		}
 	}
 	
@@ -390,7 +387,6 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
         ctrl_1.PID[PIDYAW].ki 	= 0.001*( (vs16)(*(data_buf+18)<<8)|*(data_buf+19) );
         ctrl_1.PID[PIDYAW].kd 	= 0.001*( (vs16)(*(data_buf+20)<<8)|*(data_buf+21) );
         ANO_DT_Send_Check(*(data_buf+2),sum);
-				//Param_SavePID();
 			  PID_Para_Init();
 				flash_save_en_cnt = 1;
     }

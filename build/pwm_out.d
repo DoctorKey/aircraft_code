@@ -31,7 +31,6 @@
 .\build\pwm_out.o: .\applications\parameter.h
 .\build\pwm_out.o: .\drivers\pwm_in.h
 .\build\pwm_out.o: .\drivers\usart.h
-.\build\pwm_out.o: .\applications\usbd_user_hid.h
 .\build\pwm_out.o: .\applications\data_transfer.h
 .\build\pwm_out.o: .\applications\height_ctrl.h
 .\build\pwm_out.o: .\applications\mymath.h
