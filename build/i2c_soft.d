@@ -13,12 +13,10 @@
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h
-.\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
-.\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 .\build\i2c_soft.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h

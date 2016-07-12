@@ -13,12 +13,10 @@
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h
-.\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
-.\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 .\build\time.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h

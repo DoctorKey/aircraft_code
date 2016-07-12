@@ -13,12 +13,10 @@
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h
-.\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
-.\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 .\build\pwm_in.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h

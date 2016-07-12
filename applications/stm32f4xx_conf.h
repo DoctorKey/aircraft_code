@@ -26,7 +26,7 @@
 #if defined  (HSE_VALUE)
 /* Redefine the HSE value; it's equal to 8 MHz on the STM32F4-DISCOVERY Kit */
  #undef HSE_VALUE
- #define HSE_VALUE    ((uint32_t)8000000)
+ #define HSE_VALUE    ((uint32_t)25000000)
 #endif /* HSE_VALUE */
 
 /* Includes ------------------------------------------------------------------*/
@@ -40,7 +40,7 @@
 //#include "stm32f4xx_dcmi.h"
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_exti.h"
-#include "stm32f4xx_flash.h"
+//#include "stm32f4xx_flash.h"
 //#include "stm32f4xx_fsmc.h"
 //#include "stm32f4xx_hash.h"
 #include "stm32f4xx_gpio.h"
@@ -51,7 +51,7 @@
 //#include "stm32f4xx_rng.h"
 //#include "stm32f4xx_rtc.h"
 //#include "stm32f4xx_sdio.h"
-#include "stm32f4xx_spi.h"
+//#include "stm32f4xx_spi.h"
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_tim.h"
 #include "stm32f4xx_usart.h"

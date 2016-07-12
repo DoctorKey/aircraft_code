@@ -12,10 +12,8 @@
 #include "ak8975.h"
 #include "ctrl.h"
 #include "string.h"
-//#include "ff.h"
 #include "height_ctrl.h"
 
-u8 flash_init_error;
 sensor_setup_t sensor_setup;
 pid_setup_t pid_setup;
 
@@ -124,7 +122,6 @@ void PID_Para_Init()
 void Para_Init()
 {
 	Para_ResetToFactorySetup();
-	flash_init_error = 1;
 	Param_SetSettingToFC();
 	
 	PID_Para_Init();

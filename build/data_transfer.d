@@ -13,12 +13,10 @@
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h
-.\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_i2c.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h
-.\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_spi.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 .\build\data_transfer.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
