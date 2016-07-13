@@ -7,6 +7,7 @@
 #include "rc.h"
 #include "imu.h"
 #include "mpu6050.h"
+#include "safe.h"
 
 enum {
     PIDROLL,

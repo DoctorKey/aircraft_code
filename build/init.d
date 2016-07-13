@@ -39,6 +39,7 @@
 .\build\init.o: applications\imu.h
 .\build\init.o: applications\mymath.h
 .\build\init.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
+.\build\init.o: applications\safe.h
 .\build\init.o: .\drivers\ak8975.h
 .\build\init.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\stdbool.h
 .\build\init.o: .\drivers\ultrasonic.h

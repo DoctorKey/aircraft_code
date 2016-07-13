@@ -134,8 +134,6 @@ void Ultra_Ctrl(float T,float thr)
 	exp_height_speed = ULTRA_SPEED *my_deathzoom_2(thr - 500,50)/200.0f; //+-ULTRA_SPEEDmm / s
 	exp_height_speed = LIMIT(exp_height_speed ,-ULTRA_SPEED,ULTRA_SPEED);
 	
-	exp_height=(CH_filter[THR]+500)*ULTRA_MAX_HEIGHT/1000.0f;
-	
 	if( exp_height > ULTRA_MAX_HEIGHT )
 	{
 		if( exp_height_speed > 0 )

@@ -40,4 +40,5 @@
 .\build\scheduler.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
 .\build\scheduler.o: applications\ctrl.h
 .\build\scheduler.o: .\drivers\pwm_out.h
+.\build\scheduler.o: applications\safe.h
 .\build\scheduler.o: .\drivers\ultrasonic.h

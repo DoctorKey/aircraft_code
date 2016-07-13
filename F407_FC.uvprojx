@@ -367,7 +367,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls>--c99</MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,USE_USB_OTG_FS</Define>
+              <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
               <IncludePath>.\applications;.\build;.\drivers;.\Libraries\STM32F4xx_StdPeriph_Driver\inc;.\Libraries\CMSIS\Include;.\Libraries\CMSIS\ST\STM32F4xx\Include;.\Libraries\USBStack\INC;.\Libraries\FatFS\src</IncludePath>
             </VariousControls>
@@ -608,6 +608,16 @@
               <FileName>myctrl.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\applications\myctrl.h</FilePath>
+            </File>
+            <File>
+              <FileName>safe.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\applications\safe.c</FilePath>
+            </File>
+            <File>
+              <FileName>safe.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\applications\safe.h</FilePath>
             </File>
           </Files>
         </Group>

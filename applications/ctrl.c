@@ -264,6 +264,7 @@ void All_Out(float out_roll,float out_pitch,float out_yaw)
 				motor[i] = LIMIT(motor[i], 0,(10*MAX_PWM) );
 			}
 		}
+//		safe_motor();
 	}
 	else
 	{

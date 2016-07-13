@@ -13,6 +13,7 @@
 ".\build\filter.o"
 ".\build\height_ctrl.o"
 ".\build\myctrl.o"
+".\build\safe.o"
 ".\build\time.o"
 ".\build\pwm_in.o"
 ".\build\pwm_out.o"

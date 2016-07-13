@@ -8,23 +8,28 @@
 #define TAKE_OFF_UNLOCK 200
 #define TAKE_OFF_PWM 500
 void take_off()
-{
-	s16 motor_take_off[MAXMOTORS];
-	motor_take_off[0] = TAKE_OFF_UNLOCK;  
-	motor_take_off[1] = TAKE_OFF_UNLOCK;	 
-	motor_take_off[2] = TAKE_OFF_UNLOCK;
-	motor_take_off[3] = TAKE_OFF_UNLOCK;
-	SetPwm(motor_take_off,0,1000);
-	Delay_ms(2000);
-	motor_take_off[0] = TAKE_OFF_PWM;  
-	motor_take_off[1] = TAKE_OFF_PWM;	 
-	motor_take_off[2] = TAKE_OFF_PWM;
-	motor_take_off[3] = TAKE_OFF_PWM;
-	SetPwm(motor_take_off,0,1000); 		
-	Delay_ms(500);
-	CH[2]=0;
-	fly_ready=1;
-	height_mode=0;//结束起飞模式
+{	
+	if(ultra_distance<180)
+	{
+		fly_ready=1;
+	}
+	if(ultra_distance<400)
+	{
+		if(CH[2]<100)
+		{
+			CH[2]=CH[2]+15;
+		}
+	}else if(ultra_distance<600)
+	{
+		if(CH[2]<150)
+		{
+			CH[2]=CH[2]+10;
+		}
+	}else
+	{
+		CH[2]=-50;
+		height_mode=0;//结束起飞模式
+	}	
 }
 void land()
 {

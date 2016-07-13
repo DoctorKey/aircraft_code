@@ -38,4 +38,5 @@
 .\build\myctrl.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
 .\build\myctrl.o: .\drivers\mpu6050.h
 .\build\myctrl.o: applications\ctrl.h
+.\build\myctrl.o: applications\safe.h
 .\build\myctrl.o: .\drivers\ultrasonic.h
