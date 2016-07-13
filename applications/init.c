@@ -22,6 +22,8 @@ u8 All_Init()
 	
 	SysTick_Configuration(); 	//滴答时钟
 	
+	LED_Init();								//LED功能初始化
+	
 	I2c_Soft_Init();					//初始化模拟I2C
 	
 	PWM_IN_Init();						//初始化接收机采集功能
@@ -31,9 +33,7 @@ u8 All_Init()
 	Delay_ms(200);						//延时
 	
 	MPU6050_Init(20);   			//加速度计、陀螺仪初始化，配置20hz低通
-	
-	LED_Init();								//LED功能初始化
-	
+		
 	Usart2_Init(115200);			//串口2初始化，函数参数为波特率
 	//Usart2_Init(256000);
 	
@@ -58,6 +58,12 @@ u8 All_Init()
 		LED_Mag_Err();
 	}
 
+	LED0_OFF;
+	Delay_ms(1000);
+	LED0_ON;
+	Delay_ms(1000);
+	LED0_OFF;
+	
 	return (1);
 }
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/

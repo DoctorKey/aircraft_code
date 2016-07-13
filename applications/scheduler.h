@@ -17,13 +17,7 @@ typedef struct
 }loop_t;
 
 void Loop_check(void);
-
 void Duty_Loop(void);
-
-void Inner_Loop(float);
-
-void Outer_Loop(float);
-
 
 #endif
 

@@ -5,19 +5,26 @@
 #include "ctrl.h"
 #include "ultrasonic.h"
 #define TAKE_OFF_HEIGHT 700
+#define TAKE_OFF_UNLOCK 200
+#define TAKE_OFF_PWM 500
 void take_off()
 {
-	if(ultra_distance>200)
-	{
-		CH[2]=-400;	
-		fly_ready=1;
-	}
-		
-//	delay_ms(2000);
-	if(ultra_distance>TAKE_OFF_HEIGHT)
-	{
-		height_mode=0;//结束起飞模式
-	}
+	s16 motor_take_off[MAXMOTORS];
+	motor_take_off[0] = TAKE_OFF_UNLOCK;  
+	motor_take_off[1] = TAKE_OFF_UNLOCK;	 
+	motor_take_off[2] = TAKE_OFF_UNLOCK;
+	motor_take_off[3] = TAKE_OFF_UNLOCK;
+	SetPwm(motor_take_off,0,1000);
+	Delay_ms(2000);
+	motor_take_off[0] = TAKE_OFF_PWM;  
+	motor_take_off[1] = TAKE_OFF_PWM;	 
+	motor_take_off[2] = TAKE_OFF_PWM;
+	motor_take_off[3] = TAKE_OFF_PWM;
+	SetPwm(motor_take_off,0,1000); 		
+	Delay_ms(500);
+	CH[2]=0;
+	fly_ready=1;
+	height_mode=0;//结束起飞模式
 }
 void land()
 {

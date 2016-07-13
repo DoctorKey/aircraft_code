@@ -21,6 +21,8 @@ void LED_Init()
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;//设置引脚速度为100MHz
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;//设置引脚为上拉 		 
 	GPIO_Init(GPIOB, &GPIO_InitStructure);//调用库函数，初始化GPIO	
+	
+	LED0_ON;
 }
 
 #include "rc.h"
@@ -29,13 +31,15 @@ void LED_Init()
 u8 flag=1;
 void LED_Duty()
 {
-	if(flag==0){
-		LED0_ON;
-		flag=1;
-	}else{
-		LED0_OFF;
-		flag=0;
-	}
+	flag?LED0_ON:LED0_OFF;
+	flag=!flag;
+//	if(flag==0){
+//		LED0_ON;
+//		flag=1;
+//	}else{
+//		LED0_OFF;
+//		flag=0;
+//	}
 }
 
 void LED_MPU_Err(void)

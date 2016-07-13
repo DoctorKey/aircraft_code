@@ -26,7 +26,7 @@ void CH_Mapping_Fun(u16 *in,u16 *Mapped_CH)
 
 s16 CH[CH_NUM];
 
-float CH_Old[CH_NUM];
+//float CH_Old[CH_NUM];
 float CH_filter[CH_NUM];
 float CH_filter_Old[CH_NUM];
 float CH_filter_D[CH_NUM];
@@ -122,7 +122,7 @@ void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 // 					CH_filter[i] = Fli_Tmp;
 			CH_filter_D[i] 	= ( CH_filter[i] - CH_filter_Old[i] );
 			CH_filter_Old[i] = CH_filter[i];
-			CH_Old[i] 		= CH[i];
+//			CH_Old[i] 		= CH[i];
 	}
 	//======================================================================
 	Fly_Ready(T);		//解锁判断
@@ -216,38 +216,9 @@ void Feed_Rc_Dog(u8 ch_mode) //400ms内必须调用一次
 //  全局输出，CH_filter[],0横滚，1俯仰，2油门，3航向 范围：+-500	
 //=================== filter =================================== 	
 u8 height_ctrl_mode = 2;
-extern u8 ultra_ok;
+//extern u8 ultra_ok;
 void Mode()
 {
-//	if( !fly_ready || CH_filter[THR]<-400 ) //只在上锁时 以及 油门 低于10% 的时候，允许切换模式，否则只能向模式0切换。
-//	{
-//		if( CH_filter[AUX1] < -200 )
-//		{
-//			height_ctrl_mode = 0;
-//		}
-//		else if( CH_filter[AUX1] < 200 )
-//		{
-//			height_ctrl_mode = 1;
-//		}
-//		else
-//		{
-//			if(ultra_ok == 1)
-//			{
-//				height_ctrl_mode = 2;
-//			}
-//			else
-//			{
-//				height_ctrl_mode = 1;
-//			}
-//		}
-//	}
-//	else
-//	{
-//		if( CH_filter[AUX1] < -200 )
-//		{
-//			height_ctrl_mode = 0;
-//		}
-//	}
 }
 
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/
