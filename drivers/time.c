@@ -65,7 +65,6 @@ void TIM_INIT()
 	  RCC_APB1PeriphClockCmd(SYS_RCC_TIMx , ENABLE);
 }
 
-
 volatile uint32_t sysTickUptime = 0;
 
 #define TICK_PER_SECOND 1000 

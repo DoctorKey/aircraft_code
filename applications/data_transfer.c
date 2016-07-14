@@ -363,7 +363,9 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			CH[0]=0;
 			CH[1]=0;
 			CH[3]=0;
+			exp_height=160;
 			fly_ready=1;
+			mpu6050.Gyro_CALIBRATE = 2;
 		}
 		else if(*(data_buf+4)==0X03)
 		{

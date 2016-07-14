@@ -205,8 +205,8 @@ void Thr_Ctrl(float T)
 		land();
 	}
 	Height_Ctrl(T,thr);
-	thr_value = Thr_Weight *height_ctrl_out;   //原程序
-//	thr_value = height_ctrl_out;//我的程序
+//	thr_value = Thr_Weight *height_ctrl_out;   //原程序
+	thr_value = height_ctrl_out;//我的程序
 	#else
 	thr_value = thr;   //实际使用值
 	#endif
@@ -264,7 +264,6 @@ void All_Out(float out_roll,float out_pitch,float out_yaw)
 				motor[i] = LIMIT(motor[i], 0,(10*MAX_PWM) );
 			}
 		}
-//		safe_motor();
 	}
 	else
 	{

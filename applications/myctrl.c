@@ -4,32 +4,17 @@
 #include "rc.h"
 #include "ctrl.h"
 #include "ultrasonic.h"
-#define TAKE_OFF_HEIGHT 700
-#define TAKE_OFF_UNLOCK 200
-#define TAKE_OFF_PWM 500
+u8 cnt=0;
 void take_off()
 {	
-	if(ultra_distance<180)
-	{
-		fly_ready=1;
-	}
-	if(ultra_distance<400)
-	{
-		if(CH[2]<100)
-		{
-			CH[2]=CH[2]+15;
-		}
-	}else if(ultra_distance<600)
-	{
-		if(CH[2]<150)
-		{
-			CH[2]=CH[2]+10;
-		}
-	}else
-	{
-		CH[2]=-50;
-		height_mode=0;//结束起飞模式
-	}	
+	CH[2]=0;
+//	CH[0]=0;
+//	CH[1]=0;
+//	CH[3]=0;
+	exp_height=600;
+	fly_ready=1;
+	height_mode=0;
+	mpu6050.Gyro_CALIBRATE = 2;
 }
 void land()
 {

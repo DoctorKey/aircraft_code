@@ -35,12 +35,15 @@ void height_speed_ctrl(float T,float thr,float exp_z_speed,float h_speed);
 
 void Ultra_Ctrl(float T,float thr);
 
-//void PID_Incremental(_st_height_pid *ultra_pid,float target,float measure);
+void PID_Incremental(_st_height_pid *ultra_pid,float target,float measure);
 	
 extern float ultra_ctrl_out;
 
 extern float height_ctrl_out;
 
 extern float ultra_speed,wz_speed;
+
+extern float exp_height;
+
 #endif
 
