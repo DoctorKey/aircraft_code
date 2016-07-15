@@ -77,7 +77,11 @@ float wz_acc;
 //}
 void Height_Ctrl(float T,float thr)
 {
-	Ultra_Ctrl(T,thr);
+	if(ultra_ok==1)
+	{
+		Ultra_Ctrl(T,thr);
+		ultra_ok=0;
+	}
 	if(height_ctrl_mode)
 	{	
 		height_ctrl_out = ultra_ctrl_out;//ÎÒµÄ³ÌÐò
@@ -107,7 +111,7 @@ void Ultra_PID_Init()
 	ultra_pid.ki = 1.0*pid_setup.groups.hc_height.ki;
 }
 
-float exp_height_speed,exp_height;
+float exp_height_speed,exp_height = 700;
 float ultra_speed;
 float ultra_dis_lpf;
 float ultra_ctrl_out;

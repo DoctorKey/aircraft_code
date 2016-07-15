@@ -5,13 +5,14 @@
 #include "ctrl.h"
 #include "ultrasonic.h"
 u8 cnt=0;
+
 void take_off()
 {	
-	CH[2]=0;
+	CH[2]=40;
 //	CH[0]=0;
 //	CH[1]=0;
 //	CH[3]=0;
-	exp_height=600;
+//	exp_height=700;
 	fly_ready=1;
 	height_mode=0;
 	mpu6050.Gyro_CALIBRATE = 2;

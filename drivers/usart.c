@@ -80,7 +80,7 @@ u8 TxBuffer[256];
 u8 TxCounter=0;
 u8 count=0; 
 
-u8 Rx_Buf[256];	//串口接收缓存
+//u8 Rx_Buf[256];	//串口接收缓存
 
 void Usart2_IRQ(void)
 {
