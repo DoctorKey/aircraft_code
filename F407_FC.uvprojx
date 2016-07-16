@@ -609,16 +609,6 @@
               <FileType>5</FileType>
               <FilePath>.\applications\myctrl.h</FilePath>
             </File>
-            <File>
-              <FileName>safe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\applications\safe.c</FilePath>
-            </File>
-            <File>
-              <FileName>safe.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\applications\safe.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

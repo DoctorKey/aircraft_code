@@ -85,7 +85,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0.1f,height_ctrl_mode,fly_ready);//ultra_distance	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0,height_ctrl_mode,fly_ready);//ultra_distance	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -189,21 +189,6 @@ void ANO_DT_Send_Data(u8 *dataToSend , u8 length)
 
 static void ANO_DT_Send_Check(u8 head, u8 check_sum)
 {
-//		data_to_send[0]=0xAA;
-//	data_to_send[1]=0xAA;
-//	data_to_send[2]=0xF0;
-//	data_to_send[3]=3;
-//	data_to_send[4]=0xBA;
-//	
-//	data_to_send[5]=BYTE1(check_sum);
-//	data_to_send[6]=BYTE0(check_sum);
-//	
-//	u8 sum = 0;
-//	for(u8 i=0;i<7;i++)
-//		sum += data_to_send[i];
-//	
-//	data_to_send[7]=sum;
-//	ANO_DT_Send_Data(data_to_send, 8);
 	data_to_send[0]=0xAA;
 	data_to_send[1]=0xAA;
 	data_to_send[2]=0xEF;

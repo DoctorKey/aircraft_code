@@ -40,4 +40,3 @@
 .\build\height_ctrl.o: applications\mymath.h
 .\build\height_ctrl.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
 .\build\height_ctrl.o: .\drivers\mpu6050.h
-.\build\height_ctrl.o: applications\safe.h

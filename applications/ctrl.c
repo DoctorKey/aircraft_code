@@ -9,6 +9,7 @@
 
 #include "ctrl.h"
 #include "height_ctrl.h"
+#include "myctrl.h"
 
 ctrl_t ctrl_1;
 ctrl_t ctrl_2;

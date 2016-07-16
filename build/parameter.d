@@ -39,5 +39,4 @@
 .\build\parameter.o: applications\imu.h
 .\build\parameter.o: applications\mymath.h
 .\build\parameter.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\math.h
-.\build\parameter.o: applications\safe.h
 .\build\parameter.o: F:\electricity\MCU\STM32\mdk515\ARM\ARMCC\Bin\..\include\string.h

@@ -7,7 +7,6 @@
 #include "rc.h"
 #include "imu.h"
 #include "mpu6050.h"
-#include "safe.h"
 
 enum {
     PIDROLL,
@@ -47,5 +46,6 @@ void All_Out(float x,float y,float z);
 extern u8 Thr_Low;
 extern float Thr_Weight;
 extern float motor[MAXMOTORS];
+
 #endif
 
