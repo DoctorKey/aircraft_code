@@ -5,6 +5,7 @@
 
 void take_off(void);
 void land(void);
+void my_duty(void);
 
 #endif
 

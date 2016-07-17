@@ -153,7 +153,7 @@ void ANO_DT_Data_Exchange(void)
 		f.send_pid3 = 0;
 		ANO_DT_Send_PID(3,pid_setup.groups.hc_sp.kp,pid_setup.groups.hc_sp.ki,pid_setup.groups.hc_sp.kd,
 											pid_setup.groups.hc_height.kp,pid_setup.groups.hc_height.ki,pid_setup.groups.hc_height.kd,
-											exp_height/1000.0f,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
+											pid_setup.groups.ctrl3.kp,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
 	}
 	else if(f.send_pid4)
 	{
@@ -402,8 +402,8 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
         pid_setup.groups.hc_height.ki = 0.001*( (vs16)(*(data_buf+12)<<8)|*(data_buf+13) );
         pid_setup.groups.hc_height.kd = 0.001*( (vs16)(*(data_buf+14)<<8)|*(data_buf+15) );
 			
-//        pid_setup.groups.ctrl3.kp 	= 0.001*( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
-				exp_height 	= ( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
+        pid_setup.groups.ctrl3.kp 	= 0.001*( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
+//				exp_height 	= ( (vs16)(*(data_buf+16)<<8)|*(data_buf+17) );
         pid_setup.groups.ctrl3.ki 	= 0.001*( (vs16)(*(data_buf+18)<<8)|*(data_buf+19) );
         pid_setup.groups.ctrl3.kd 	= 0.001*( (vs16)(*(data_buf+20)<<8)|*(data_buf+21) );
         ANO_DT_Send_Check(*(data_buf+2),sum);

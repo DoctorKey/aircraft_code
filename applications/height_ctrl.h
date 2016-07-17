@@ -3,6 +3,8 @@
 
 #include "stm32f4xx.h"
 
+#define INTEG_MAX 3000
+
 typedef struct
 {
 	float err;
@@ -18,6 +20,7 @@ typedef struct
 	float kp;
 	float kd;
 	float ki;
+	float integ;
 	float error;
 	float preerror;
 	float prepreerror;
@@ -34,6 +37,8 @@ void WZ_Speed_PID_Init(void);
 void height_speed_ctrl(float T,float thr,float exp_z_speed,float h_speed);
 
 void Ultra_Ctrl(float T,float thr);
+
+void PID_Position(_st_height_pid *ultra_pid,float target,float measure);
 
 void PID_Incremental(_st_height_pid *ultra_pid,float target,float measure);
 	

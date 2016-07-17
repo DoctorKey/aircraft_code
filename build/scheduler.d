@@ -41,3 +41,4 @@
 .\build\scheduler.o: applications\ctrl.h
 .\build\scheduler.o: .\drivers\pwm_out.h
 .\build\scheduler.o: .\drivers\ultrasonic.h
+.\build\scheduler.o: applications\myctrl.h

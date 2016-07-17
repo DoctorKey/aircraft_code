@@ -11,6 +11,7 @@
 #include "include.h"
 
 u16 Rc_Pwm_In[8];
+u16 my_mode;
 
 void PWM_IN_Init(void)
 {
@@ -190,9 +191,23 @@ void _TIM3_IRQHandler(void)
 		{
 			temp_cnt3_2 = TIM_GetCapture3(TIM3);
 			if(temp_cnt3_2>=temp_cnt3)
+			{
+				#ifdef USE_CAMERA
+				my_mode = temp_cnt3_2-temp_cnt3;
+				#endif
+				#ifdef NO_CAMERA
 				Rc_Pwm_In[2] = temp_cnt3_2-temp_cnt3;
+				#endif
+			}
 			else
+			{
+				#ifdef USE_CAMERA
+				my_mode = 0xffff-temp_cnt3+temp_cnt3_2+1;
+				#endif
+				#ifdef NO_CAMERA
 				Rc_Pwm_In[2] = 0xffff-temp_cnt3+temp_cnt3_2+1;
+				#endif
+			}
 		}
 	}
 	if(TIM3->SR & TIM_IT_CC4) 

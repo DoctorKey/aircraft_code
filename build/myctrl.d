@@ -24,3 +24,5 @@
 .\build\myctrl.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\build\myctrl.o: applications\rc.h
 .\build\myctrl.o: .\drivers\ultrasonic.h
+.\build\myctrl.o: applications\height_ctrl.h
+.\build\myctrl.o: .\drivers\pwm_in.h

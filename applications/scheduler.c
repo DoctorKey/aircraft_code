@@ -19,6 +19,7 @@
 #include "parameter.h"
 #include "ultrasonic.h"
 #include "height_ctrl.h"
+#include "myctrl.h"
 
 s16 loop_cnt;
 
@@ -67,7 +68,7 @@ void Duty_2ms()
 	
 	RC_Duty( inner_loop_time , Rc_Pwm_In );				// 遥控器通道数据处理 ，输入：执行周期，接收机pwm捕获的数据。
 	
-	
+	my_duty();
 	
 	test[1] = GetSysTime_us()/1000000.0f;
 }

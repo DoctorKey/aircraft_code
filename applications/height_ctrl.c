@@ -106,9 +106,9 @@ void Ultra_PID_Init()
 //	ultra_pid.ki = 0;
 	
 	//ÎÒµÄpid
-	ultra_pid.kp = 1.0*pid_setup.groups.hc_height.kp;
-	ultra_pid.kd = 1.0*pid_setup.groups.hc_height.kd;
-	ultra_pid.ki = 1.0*pid_setup.groups.hc_height.ki;
+	ultra_pid.kp = 1.0f*pid_setup.groups.hc_height.kp;
+	ultra_pid.kd = 1.0f*pid_setup.groups.hc_height.kd;
+	ultra_pid.ki = 1.0f*pid_setup.groups.hc_height.ki;
 }
 
 float exp_height_speed,exp_height = 700;
@@ -128,10 +128,25 @@ void Ultra_Ctrl(float T,float thr)
 	if( exp_height > ULTRA_MAX_HEIGHT ){
 		exp_height = ULTRA_MAX_HEIGHT;
 	}
-	PID_Incremental(&ultra_pid,exp_height,ultra_distance);
+	PID_Position(&ultra_pid,exp_height,ultra_distance);
 	ultra_ctrl_out = thr+ultra_pid.output;
 }
+void PID_Position(_st_height_pid *ultra_pid,float target,float measure)
+{
+		
+	ultra_pid->error = target - measure;
+	ultra_pid->integ += ultra_pid->error;
+	
+	if(ultra_pid->integ > INTEG_MAX)
+	{
+		ultra_pid->integ = INTEG_MAX;
+	}
+	ultra_pid->output = ultra_pid->kp * ultra_pid->error + ultra_pid->ki * ultra_pid->integ + ultra_pid->kd * (ultra_pid->error - ultra_pid->preerror);
 
+	ultra_pid->preerror = ultra_pid->error;
+	ultra_pid->prepreerror = ultra_pid->preerror;
+	
+}
 void PID_Incremental(_st_height_pid *ultra_pid,float target,float measure)
 {
 	ultra_pid->error = target - measure;
