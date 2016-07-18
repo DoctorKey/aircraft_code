@@ -102,9 +102,9 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.hc_sp.ki = 1.0f;
 	pid_setup.groups.hc_sp.kd = 1.0f;
 	
-	pid_setup.groups.hc_height.kp = 0.0f;
-	pid_setup.groups.hc_height.ki = 0.0f;
-	pid_setup.groups.hc_height.kd = 0.0f;	
+	pid_setup.groups.hc_height.kp = 0.085f;
+	pid_setup.groups.hc_height.ki = 0.01f;
+	pid_setup.groups.hc_height.kd = 3.6f;	
 	
 	Param_SetSettingToFC();
 	PID_Para_Init();

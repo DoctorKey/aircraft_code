@@ -4,16 +4,17 @@
 #include "height_ctrl.h"
 #include "pwm_in.h"
 
+#define FLY_THR 1600;
+
 void take_off()
 {	
+	CH[2]=100;
+	
 	#ifdef USE_CAMERA
-	Rc_Pwm_In[2] = 1500;
+	Rc_Pwm_In[2] = FLY_THR;
 	#endif
-	CH[2]=0;
-//	CH[0]=0;
-//	CH[1]=0;
-//	CH[3]=0;
-	exp_height=400;
+	
+	exp_height=700;
 	fly_ready=1;
 	height_mode=0;
 //	mpu6050.Gyro_CALIBRATE = 2;
@@ -44,6 +45,8 @@ void land()
 			height_mode=0;//½áÊø½µÂäÄ£Ê½
 	}	
 }
+u8 take_off_ok=0;
+u8 land_ok = 0;
 void my_duty()
 {
 	if(my_mode > 1000 && my_mode < 1150)//wait_ready();
@@ -51,18 +54,29 @@ void my_duty()
 		Rc_Pwm_In[2] = 1000;
 	}else if(my_mode > 1150 && my_mode < 1250)
 	{
-		take_off();
+		if(take_off_ok == 0)
+		{
+			take_off();
+			take_off_ok = 1;
+		}
 	}else if(my_mode > 1250 && my_mode < 1350)//go();
 	{
+		Rc_Pwm_In[2] = FLY_THR;
 //		exp_height = 500;
 	}else if(my_mode > 1350 && my_mode < 1450)//throw_ball();
 	{
+		Rc_Pwm_In[2] = FLY_THR;
 		exp_height = 400;		
 	}else if(my_mode > 1450 && my_mode < 1550)//back();
 	{
+		Rc_Pwm_In[2] = FLY_THR;
 		exp_height = 700;
 	}else if(my_mode > 1550 && my_mode < 1650)
 	{
-		land();
+		if(land_ok == 0)
+		{
+			land();
+			land_ok = 1;
+		}
 	}
 }

@@ -153,7 +153,7 @@ void ANO_DT_Data_Exchange(void)
 		f.send_pid3 = 0;
 		ANO_DT_Send_PID(3,pid_setup.groups.hc_sp.kp,pid_setup.groups.hc_sp.ki,pid_setup.groups.hc_sp.kd,
 											pid_setup.groups.hc_height.kp,pid_setup.groups.hc_height.ki,pid_setup.groups.hc_height.kd,
-											pid_setup.groups.ctrl3.kp,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
+											my_mode/1000.0f,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
 	}
 	else if(f.send_pid4)
 	{
