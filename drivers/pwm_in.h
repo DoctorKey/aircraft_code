@@ -8,6 +8,6 @@ void _TIM3_IRQHandler(void);
 void _TIM4_IRQHandler(void);
 
 extern u16 Rc_Pwm_In[8];
-extern u16 my_mode;
+extern u16 camera_mode;
 
 #endif

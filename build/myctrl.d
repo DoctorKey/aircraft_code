@@ -26,3 +26,10 @@
 .\build\myctrl.o: .\drivers\ultrasonic.h
 .\build\myctrl.o: applications\height_ctrl.h
 .\build\myctrl.o: .\drivers\pwm_in.h
+.\build\myctrl.o: applications\include.h
+.\build\myctrl.o: applications\scheduler.h
+.\build\myctrl.o: .\drivers\time.h
+.\build\myctrl.o: applications\init.h
+.\build\myctrl.o: applications\parameter.h
+.\build\myctrl.o: .\drivers\usart.h
+.\build\myctrl.o: applications\data_transfer.h

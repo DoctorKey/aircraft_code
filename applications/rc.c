@@ -26,7 +26,6 @@ void CH_Mapping_Fun(u16 *in,u16 *Mapped_CH)
 
 s16 CH[CH_NUM];
 
-//float CH_Old[CH_NUM];
 float CH_filter[CH_NUM];
 float CH_filter_Old[CH_NUM];
 float CH_filter_D[CH_NUM];
@@ -119,13 +118,11 @@ void RC_Duty( float T , u16 tmp16_CH[CH_NUM] )
 			{
 				CH_filter[i] += 0.5f *filter_A *( CH[i] - CH_filter[i]) ;
 			}
-// 					CH_filter[i] = Fli_Tmp;
 			CH_filter_D[i] 	= ( CH_filter[i] - CH_filter_Old[i] );
 			CH_filter_Old[i] = CH_filter[i];
-//			CH_Old[i] 		= CH[i];
 	}
 	//======================================================================
-	Fly_Ready(T);		//Ω‚À¯≈–∂œ
+//	Fly_Ready(T);		//Ω‚À¯≈–∂œ
 	//======================================================================
 	if(++NS_cnt>200)  // 400ms  Œ¥≤Â–≈∫≈œﬂ°£
 	{

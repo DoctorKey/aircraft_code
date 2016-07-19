@@ -11,8 +11,8 @@
 #include "include.h"
 
 u16 Rc_Pwm_In[8];
-u16 my_mode;
-
+u16 camera_mode;
+u16 camera_mode_last;
 void PWM_IN_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -137,6 +137,8 @@ void PWM_IN_Init(void)
 	TIM_ITConfig(TIM4, TIM_IT_CC2, ENABLE);
 	TIM_ITConfig(TIM4, TIM_IT_CC3, ENABLE);
 	TIM_ITConfig(TIM4, TIM_IT_CC4, ENABLE);
+	
+	Rc_Pwm_In[2] = 1000;
 }
 
 void _TIM3_IRQHandler(void)	
@@ -193,7 +195,15 @@ void _TIM3_IRQHandler(void)
 			if(temp_cnt3_2>=temp_cnt3)
 			{
 				#ifdef USE_CAMERA
-				my_mode = temp_cnt3_2-temp_cnt3;
+				camera_mode = temp_cnt3_2-temp_cnt3;
+				if(camera_mode==1500)
+				{
+					camera_mode = camera_mode_last;
+				}
+				else
+				{
+					camera_mode_last = camera_mode;
+				}
 				#endif
 				#ifdef NO_CAMERA
 				Rc_Pwm_In[2] = temp_cnt3_2-temp_cnt3;
@@ -202,7 +212,15 @@ void _TIM3_IRQHandler(void)
 			else
 			{
 				#ifdef USE_CAMERA
-				my_mode = 0xffff-temp_cnt3+temp_cnt3_2+1;
+				camera_mode = 0xffff-temp_cnt3+temp_cnt3_2+1;
+				if(camera_mode==1500)
+				{
+					camera_mode = camera_mode_last;
+				}
+				else
+				{
+					camera_mode_last = camera_mode;
+				}
 				#endif
 				#ifdef NO_CAMERA
 				Rc_Pwm_In[2] = 0xffff-temp_cnt3+temp_cnt3_2+1;

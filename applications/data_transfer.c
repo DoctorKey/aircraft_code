@@ -85,7 +85,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,0,height_ctrl_mode,fly_ready);//ultra_distance	
+		ANO_DT_Send_Status(Roll,Pitch,Yaw,ultra_distance,Rc_Pwm_In[2],height_ctrl_mode,fly_ready);//ultra_distance	
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_speed)
@@ -111,7 +111,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_senser2)
 	{
 		f.send_senser2 = 0;
-		ANO_DT_Send_Senser2(0,ultra_distance);//baroAlt,ultra_distance
+		ANO_DT_Send_Senser2(Rc_Pwm_In[2],ultra_distance);//baroAlt,ultra_distance
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_rcdata)
@@ -153,7 +153,7 @@ void ANO_DT_Data_Exchange(void)
 		f.send_pid3 = 0;
 		ANO_DT_Send_PID(3,pid_setup.groups.hc_sp.kp,pid_setup.groups.hc_sp.ki,pid_setup.groups.hc_sp.kd,
 											pid_setup.groups.hc_height.kp,pid_setup.groups.hc_height.ki,pid_setup.groups.hc_height.kd,
-											my_mode/1000.0f,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
+											pid_setup.groups.ctrl3.kp,pid_setup.groups.ctrl3.ki,pid_setup.groups.ctrl3.kd);
 	}
 	else if(f.send_pid4)
 	{
@@ -344,10 +344,13 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			fly_ready=0;
 		}else if(*(data_buf+4)==0X02)
 		{
+			#ifndef USE_CAMERA
 			CH[2]=-350;
 			CH[0]=0;
 			CH[1]=0;
 			CH[3]=0;
+			#endif
+			Rc_Pwm_In[2] = 1150;
 			exp_height=160;
 			fly_ready=1;
 			mpu6050.Gyro_CALIBRATE = 2;
@@ -355,6 +358,7 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 		else if(*(data_buf+4)==0X03)
 		{
 			height_mode=1;//Æð·É
+			Rc_Pwm_In[2] = FLY_THR;
 		}
 		else if(*(data_buf+4)==0X04)
 		{
