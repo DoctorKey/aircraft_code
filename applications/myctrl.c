@@ -12,7 +12,7 @@ u8 land_ok = 0;
 
 void take_off()
 {	
-	#ifndef USE_CAMERA
+	#ifdef NO_CAMERA
 	CH[2]=135;
 	#endif
 	
@@ -29,7 +29,7 @@ void take_off()
 }
 void land()
 {
-	#ifndef USE_CAMERA
+	#ifdef NO_CAMERA
 	if(ultra_distance>600)
 	{
 		if(CH[2]>-200)
@@ -84,36 +84,45 @@ void my_duty()
 {
 	if(camera_mode > 1000 && camera_mode < 1150)//wait_ready();
 	{
-		my_mode = 0;
+		if(my_mode !=0)
+		{
+			my_mode = 0;
 //		Rc_Pwm_In[2] = 1000;
+		}
 	}else if(camera_mode > 1150 && camera_mode < 1250)//take_off
 	{
-		my_mode = 1;
-		if(take_off_ok == 0)
+		
+		if(my_mode !=1)
 		{
+			my_mode = 1;
 			height_mode=1;//Æð·É
 			Rc_Pwm_In[2] = FLY_THR;
 		}
 	}else if(camera_mode > 1250 && camera_mode < 1350)//go();
 	{
-		my_mode = 2;
-		Rc_Pwm_In[2] = FLY_THR;
+		if(my_mode != 2){
+			my_mode = 2;
+			Rc_Pwm_In[2] = FLY_THR;
 //		exp_height = 500;
+		}
 	}else if(camera_mode > 1350 && camera_mode < 1450)//throw_ball();
 	{
-		my_mode = 3;
-		Rc_Pwm_In[2] = FLY_THR;
-//		exp_height = 400;		
+		if(my_mode != 3){
+			my_mode = 3;
+			Rc_Pwm_In[2] = FLY_THR;
+//		exp_height = 400;	
+		}			
 	}else if(camera_mode > 1550 && camera_mode < 1650)//back();
 	{
-		my_mode = 4;
-		Rc_Pwm_In[2] = FLY_THR;
-		exp_height = 700;
+		if(my_mode != 4){
+			my_mode = 4;
+			Rc_Pwm_In[2] = FLY_THR;
+			exp_height = 700;
+		}
 	}else if(camera_mode > 1650 && camera_mode < 1750)
 	{
-		my_mode = 5;
-		if(land_ok == 0)
-		{
+		if(my_mode != 5){
+			my_mode = 5;
 			height_mode=2;//½µÂäÄ£Ê½
 		}
 	}
