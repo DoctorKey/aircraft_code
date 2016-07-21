@@ -6,7 +6,6 @@
 void Fly_Ready(float T);
 void RC_Duty(float , u16 * );
 void Feed_Rc_Dog(u8 ch_mode);
-void Mode(void);
 
 extern float CH_filter[];
 extern s16 CH[];

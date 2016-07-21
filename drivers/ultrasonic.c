@@ -1,7 +1,7 @@
 #include "include.h"
 #include "ultrasonic.h"
 #include "usart.h"
-
+#include "mymath.h"
 
 void Ultrasonic_Init()
 {
@@ -63,10 +63,9 @@ void Ultra_Get(u8 com_data)
 		{
 			ultra_distance=ultra_distance_old;
 		}
-		if( ultra_distance - ultra_distance_old > 40 )
-		{
-			ultra_distance = ultra_distance_old + 40;
-		}
+		
+		LIMIT(ultra_distance,ultra_distance_old-40,ultra_distance_old+40);
+
 		ultra_start_f = 0;
 		ultra_ok = 1;
 	}

@@ -8,7 +8,7 @@ void Ultra_Duty(void);
 void Ultra_Get(u8);
 
 extern s8 ultra_start_f;
-extern u16 ultra_distance;
+extern u16 ultra_distance,ultra_distance_old;
 extern s16 ultra_delta; 
 extern u8 ultra_ok;
 

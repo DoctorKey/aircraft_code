@@ -98,9 +98,9 @@ void Para_ResetToFactorySetup(void)
 	pid_setup.groups.ctrl4.ki = 0.0f;
 	pid_setup.groups.ctrl4.kd = 0.0;
 	
-	pid_setup.groups.hc_sp.kp = 1.0f;
-	pid_setup.groups.hc_sp.ki = 1.0f;
-	pid_setup.groups.hc_sp.kd = 1.0f;
+	pid_setup.groups.hc_sp.kp = 0.0f;
+	pid_setup.groups.hc_sp.ki = 0.0f;
+	pid_setup.groups.hc_sp.kd = 0.0f;
 	
 	pid_setup.groups.hc_height.kp = 0.085f;
 	pid_setup.groups.hc_height.ki = 0.01f;
@@ -113,8 +113,6 @@ void Para_ResetToFactorySetup(void)
 void PID_Para_Init()
 {
 	Ctrl_Para_Init();
-//	WZ_Acc_PID_Init();
-	WZ_Speed_PID_Init();
 	Ultra_PID_Init();
 
 }

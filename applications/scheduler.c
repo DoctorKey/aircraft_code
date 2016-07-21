@@ -99,9 +99,11 @@ void Duty_20ms()
 
 void Duty_50ms()
 {
-	//先检测下超声波
-	//Mode();
+	
+	#ifdef USE_CAMERA
 	my_duty();
+	#endif
+	
 	LED_Duty();								//LED任务
 	Ultra_Duty();
 }

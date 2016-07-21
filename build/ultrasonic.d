@@ -31,3 +31,4 @@
 .\build\ultrasonic.o: .\applications\data_transfer.h
 .\build\ultrasonic.o: .\applications\height_ctrl.h
 .\build\ultrasonic.o: drivers\ultrasonic.h
+.\build\ultrasonic.o: .\applications\mymath.h

@@ -91,7 +91,7 @@ void ANO_DT_Data_Exchange(void)
 	else if(f.send_speed)
 	{
 		f.send_speed = 0;
-		ANO_DT_Send_Speed(0,0,wz_speed);
+		ANO_DT_Send_Speed(0,0,0);//wz_speed
 	}
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_user)
@@ -819,9 +819,9 @@ void ANO_DT_Send_PID(u8 group,float p1_p,float p1_i,float p1_d,float p2_p,float 
 }
 
 extern u16 ultra_distance;
-extern float ultra_speed;
-extern float wz_speed_0,wz_speed,m_norm;
-extern float ultra_ctrl_out;
+//extern float ultra_speed;
+//extern float wz_speed_0,wz_speed,m_norm;
+//extern float ultra_ctrl_out;
 extern float yaw_mag,airframe_x_sp,airframe_y_sp,wx_sp,wy_sp;
 extern float werr_x_gps,werr_y_gps,aerr_x_gps,aerr_y_gps;
 
@@ -840,11 +840,11 @@ void ANO_DT_Send_User()
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 
-	_temp = (s16)wz_speed;
+	_temp = (s16)0;//wz_speed;
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);
 	
-	_temp = (s16)wz_speed;
+	_temp = (s16)0;//wz_speed;
 	data_to_send[_cnt++]=BYTE1(_temp);
 	data_to_send[_cnt++]=BYTE0(_temp);	
 	

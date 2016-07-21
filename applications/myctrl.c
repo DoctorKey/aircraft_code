@@ -13,7 +13,7 @@ u8 land_ok = 0;
 void take_off()
 {	
 	#ifdef NO_CAMERA
-	CH[2]=135;
+	CH[2] = FLY_THR-1500;
 	#endif
 	
 	#ifdef USE_CAMERA

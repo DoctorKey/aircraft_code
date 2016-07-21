@@ -189,7 +189,7 @@ void Fly_Ready(float T)
 	if( ready_cnt > 1000 ) // 1000ms 
 	{
 		ready_cnt = -1;
-		//fly_ready = ( fly_ready==1 ) ? 0 : 1 ;
+
 		if( !fly_ready )
 		{
 			fly_ready = 1;
@@ -213,10 +213,7 @@ void Feed_Rc_Dog(u8 ch_mode) //400ms内必须调用一次
 //  全局输出，CH_filter[],0横滚，1俯仰，2油门，3航向 范围：+-500	
 //=================== filter =================================== 	
 u8 height_ctrl_mode = 2;
-//extern u8 ultra_ok;
-void Mode()
-{
-}
+
 
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/
 

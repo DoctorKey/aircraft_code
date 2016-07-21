@@ -17,7 +17,6 @@
 //#define NO_CAMERA
 
 #define USE_US100           //使用us100型号超声波 
-// #define USE_KS103					//使用ks103型号超声波
 
 #define MAXMOTORS 		(4)		//电机数量
 #define GET_TIME_NUM 	(5)		//设置获取时间的数组数量
@@ -25,7 +24,6 @@
 
 #define USE_TOE_IN_UNLOCK 1 // 0：默认解锁方式，1：外八解锁方式
 #define ANO_DT_USE_USART2 	//开启串口2数传功能
-//#define ANO_DT_USE_USB_HID	//开启飞控USBHID连接上位机功能
 
 //=======================================
 /***************中断优先级******************/
@@ -93,7 +91,7 @@ enum
 #define MAX_CTRL_YAW_SPEED 	150.0f									//YAW允许的最大控制角速度
 #define CTRL_1_INT_LIMIT 		0.5f *MAX_CTRL_ASPEED		//内环积分幅度
 
-#define FLY_THR 1608;
+#define FLY_THR 1635;
 
 #define MAX_PWM				100			///%	最大PWM输出为100%油门
 #define MAX_THR       80 			///%	油门通道最大占比80%，留20%给控制量
