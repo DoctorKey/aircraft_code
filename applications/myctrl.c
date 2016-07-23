@@ -13,19 +13,19 @@ u8 land_ok = 0;
 void take_off()
 {	
 	#ifdef NO_CAMERA
-	CH[2] = FLY_THR-1500;
+	CH[2] = FLY_THR - 1500;
 	#endif
 	
 	#ifdef USE_CAMERA
 	Rc_Pwm_In[2] = FLY_THR;
 	#endif
 	
-	exp_height=700;
+	exp_height=1200;
 	land_ok = 0;//ÔÊÐí½µÂä
 	fly_ready=1;
 	take_off_ok = 1;
 	height_mode=0;
-//	mpu6050.Gyro_CALIBRATE = 2;
+	
 }
 void land()
 {
@@ -109,15 +109,15 @@ void my_duty()
 	{
 		if(my_mode != 3){
 			my_mode = 3;
-			Rc_Pwm_In[2] = FLY_THR;
-//		exp_height = 400;	
+			Rc_Pwm_In[2] = FLY_THR - 30;
+			exp_height = 400;	
 		}			
 	}else if(camera_mode > 1550 && camera_mode < 1650)//back();
 	{
 		if(my_mode != 4){
 			my_mode = 4;
-			Rc_Pwm_In[2] = FLY_THR;
-			exp_height = 700;
+			Rc_Pwm_In[2] = FLY_THR - 30;
+			exp_height = 600;
 		}
 	}else if(camera_mode > 1650 && camera_mode < 1750)
 	{

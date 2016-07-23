@@ -25,7 +25,7 @@ void Height_Ctrl(float T,float thr)
 	}
 }
 
-#define ULTRA_MAX_HEIGHT 1000   // mm
+#define ULTRA_MAX_HEIGHT 1500   // mm
 #define INTEG_MAX 3000 //积分限幅
 
 _st_height_pid ultra_pid;
@@ -37,15 +37,11 @@ void Ultra_PID_Init()
 	ultra_pid.ki = 1.0f*pid_setup.groups.hc_height.ki;
 }
 
-float exp_height = 700;
+float exp_height;
 
 //////////////////我的定高程序////////////////////
 void Ultra_Ctrl(float T,float thr)
 {
-	/*
-		CH_filter   -500  ------  500
-		exp_height    0   ------  ULTRA_MAX_HEIGHT
-	*/
 
 	if( exp_height > ULTRA_MAX_HEIGHT ){
 		exp_height = ULTRA_MAX_HEIGHT;
@@ -61,7 +57,7 @@ void PID_Position(_st_height_pid *ultra_pid,float target,float measure)
 	ultra_pid->error = target - measure;
 	ultra_pid->integ += ultra_pid->error;
 	
-	LIMIT(ultra_pid->integ,-INTEG_MAX,INTEG_MAX);
+	ultra_pid->integ = LIMIT(ultra_pid->integ,-INTEG_MAX,INTEG_MAX);
 
 	ultra_pid->output = ultra_pid->kp * ultra_pid->error + ultra_pid->ki * ultra_pid->integ + ultra_pid->kd * (ultra_pid->error - ultra_pid->preerror);
 

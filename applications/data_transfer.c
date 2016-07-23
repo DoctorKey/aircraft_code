@@ -344,14 +344,16 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			fly_ready=0;
 		}else if(*(data_buf+4)==0X02)
 		{
-			#ifndef USE_CAMERA
+			#ifdef NO_CAMERA
 			CH[2]=-350;
 			CH[0]=0;
 			CH[1]=0;
 			CH[3]=0;
 			#endif
+			#ifdef USE_CAMERA
 			Rc_Pwm_In[2] = 1150;
-			exp_height=160;
+			#endif
+			exp_height=190;
 			fly_ready=1;
 			mpu6050.Gyro_CALIBRATE = 2;
 		}
