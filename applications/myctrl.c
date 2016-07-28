@@ -4,7 +4,7 @@
 #include "height_ctrl.h"
 #include "pwm_in.h"
 #include "include.h"
-
+#include "mpu6050.h"
 
 u8 my_mode=0;
 u8 take_off_ok=0;
@@ -103,21 +103,18 @@ void my_duty()
 		if(my_mode != 2){
 			my_mode = 2;
 			Rc_Pwm_In[2] = FLY_THR;
-//		exp_height = 500;
 		}
 	}else if(camera_mode > 1350 && camera_mode < 1450)//throw_ball();
 	{
 		if(my_mode != 3){
 			my_mode = 3;
-			Rc_Pwm_In[2] = FLY_THR - 30;
-			exp_height = 400;	
+			Rc_Pwm_In[2] = FLY_THR;	
 		}			
 	}else if(camera_mode > 1550 && camera_mode < 1650)//back();
 	{
 		if(my_mode != 4){
 			my_mode = 4;
-			Rc_Pwm_In[2] = FLY_THR - 30;
-			exp_height = 600;
+			Rc_Pwm_In[2] = FLY_THR;
 		}
 	}else if(camera_mode > 1650 && camera_mode < 1750)
 	{
@@ -125,5 +122,24 @@ void my_duty()
 			my_mode = 5;
 			height_mode=2;//½µÂäÄ£Ê½
 		}
+	}else if(camera_mode > 1750 && camera_mode < 1850)
+	{
+		if(my_mode != 6){
+			my_mode = 6;
+			fly_ready=0;
+		}
+	}else if(camera_mode > 1850 && camera_mode < 1950)
+	{
+		if(my_mode != 7){
+			my_mode = 7;
+			#ifdef USE_CAMERA
+			Rc_Pwm_In[2] = 1200;
+			#endif
+			exp_height=200;
+			fly_ready=1;
+			mpu6050.Gyro_CALIBRATE = 2;
+		}
 	}
 }
+
+

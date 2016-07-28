@@ -33,3 +33,4 @@
 .\build\myctrl.o: applications\parameter.h
 .\build\myctrl.o: .\drivers\usart.h
 .\build\myctrl.o: applications\data_transfer.h
+.\build\myctrl.o: .\drivers\mpu6050.h

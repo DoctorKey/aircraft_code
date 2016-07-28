@@ -351,9 +351,9 @@ void ANO_DT_Data_Receive_Anl(u8 *data_buf,u8 num)
 			CH[3]=0;
 			#endif
 			#ifdef USE_CAMERA
-			Rc_Pwm_In[2] = 1150;
+			Rc_Pwm_In[2] = 1200;
 			#endif
-			exp_height=190;
+			exp_height=200;
 			fly_ready=1;
 			mpu6050.Gyro_CALIBRATE = 2;
 		}
